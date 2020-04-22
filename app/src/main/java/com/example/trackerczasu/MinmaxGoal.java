@@ -8,7 +8,7 @@ public class MinmaxGoal extends Goal {
     public boolean isMin;
     public boolean isMax;
 
-    MinmaxGoal(String minOrMaxIndicator, long minOrMax)
+    MinmaxGoal(String minOrMaxIndicator, long minOrMax) //to mógłby być teoretycznie boolean, a nie String
     {
         if (minOrMaxIndicator == "max")
             {
