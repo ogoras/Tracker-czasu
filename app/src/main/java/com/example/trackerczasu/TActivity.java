@@ -27,8 +27,13 @@ public class TActivity {
         return isCurrent ? System.currentTimeMillis()/1000 - startTime : endTime - startTime;
     }
 
-    public void editType(String name){
-        type = name;
+    public boolean editType(ActivityTypeList List, String name){
+        if(List.findType(name)) {
+            type = name;
+            return true;
+        }
+        else
+            return false;
     }
 
     public void editTag(String name){

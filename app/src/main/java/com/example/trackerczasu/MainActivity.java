@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.trackerczasu.MESSAGE";
+    public static UserActivities ActivityList = new UserActivities();
+    public static ActivityTypeList TypeList = new ActivityTypeList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
