@@ -1,6 +1,8 @@
 package com.example.trackerczasu;
 
 public class TActivity {
+    private int id;
+
     public boolean isCurrent;
     public String type;
     public String tag;
