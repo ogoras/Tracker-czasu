@@ -27,7 +27,7 @@ public class UserActivities {
     public TActivity getCurrentActivity() //tak jak wyzej
     {
         for (TActivity A : List) {
-            if (A.isCurrent = true)
+            if (A.isCurrent == true)
                 return A;
         }
         return null;
