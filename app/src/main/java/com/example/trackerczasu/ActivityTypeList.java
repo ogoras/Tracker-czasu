@@ -6,7 +6,7 @@ import java.util.List;
 public class ActivityTypeList {
     public int size;
 
-    private List<ActivityType> ActivityTypes;
+    public List<ActivityType> ActivityTypes;
 
     ActivityTypeList () {
         ActivityTypes = new ArrayList<ActivityType>();
