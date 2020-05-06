@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.widget.TextView;
+
 public class GoalsActivity extends AppCompatActivity {
 
     @Override
@@ -12,5 +14,6 @@ public class GoalsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goals);
 
         // here will be screen with our goals and an option to create a new one
+
     }
 }

@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    //Button goalsButton = (Button)findViewById(R.id.goalsButton); // when clicked goes to new Activity window and shows active goals and user can make new
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter = new MyAdapter(typeList, this);
         recyclerView.setAdapter(mAdapter);
+
+
     }
     public static TActivity testActivity;
 
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         Button button = (Button) findViewById(R.id.button);
         EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
+        String message = editText.getText().toString(); //name of activity
         ActivityType A = new ActivityType(message);
 
         if(!message.equals("")){
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // to enable change of Activity
     public void startTracking(ActivityType type) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         String message = type.name;
