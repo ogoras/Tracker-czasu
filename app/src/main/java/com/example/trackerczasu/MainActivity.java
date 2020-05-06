@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private int color = Color.parseColor("#79aaff");
+    private int color = Color.parseColor("#e9d92e");
     //Button goalsButton = (Button)findViewById(R.id.goalsButton); // when clicked goes to new Activity window and shows active goals and user can make new
 
     @Override
