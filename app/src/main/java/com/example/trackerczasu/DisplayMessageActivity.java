@@ -8,7 +8,6 @@ import android.os.SystemClock;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
-import static com.example.trackerczasu.MainActivity.testActivity;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         //final TextView timerView = (TextView) findViewById(R.id.textView5);
         Chronometer simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometer); // initiate a chronometer
-        simpleChronometer.setBase(SystemClock.elapsedRealtime() - (System.currentTimeMillis() - testActivity.startTime*1000) );
+        simpleChronometer.setBase(SystemClock.elapsedRealtime() /* - (System.currentTimeMillis() - testActivity.startTime*1000 ) */ );
         simpleChronometer.start(); // start a chronometer
     }
 }
