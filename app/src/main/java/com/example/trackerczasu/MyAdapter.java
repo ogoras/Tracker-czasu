@@ -51,6 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.textView.setText(typeList.ActivityTypes.get(position).name);
+        holder.textView.setTextColor(typeList.ActivityTypes.get(position).getColor());
         holder.track_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 context.startTracking(typeList.ActivityTypes.get(position));

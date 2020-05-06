@@ -7,23 +7,23 @@ public class ActivityType {
     private int id;
 
     public String name;
-    private Color color;
+    private int color;
 
     ActivityType (String name){
         this.name = name;
-        this.color = Color.valueOf(0xff8f61ff);   //kolor domyslny
+        this.color = Color.parseColor("#8f61ff");   //kolor domyslny
 }
 
-    ActivityType (String name, Color color) {
+    ActivityType (String name, int color) {
         this.name = name;
         this.color = color;
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void changeColor(Color color) {
+    public void changeColor(int color) {
         this.color = color;
     }
 

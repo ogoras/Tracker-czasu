@@ -1,14 +1,19 @@
 package com.example.trackerczasu;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private int color = Color.parseColor("#79aaff");
     //Button goalsButton = (Button)findViewById(R.id.goalsButton); // when clicked goes to new Activity window and shows active goals and user can make new
 
     @Override
@@ -43,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button);
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString(); //name of activity
-        ActivityType A = new ActivityType(message);
+        ActivityType A = new ActivityType(message, color);
 
         if(!message.equals("")){
             typeList.addType(A);
@@ -67,6 +73,29 @@ public class MainActivity extends AppCompatActivity {
         typeList.deleteType(type);
         mAdapter = new MyAdapter(typeList, this);
         recyclerView.setAdapter(mAdapter);
+    }
+
+    public void pickColor(View view) {
+        final Button button = (Button) findViewById(R.id.pick_color);
+        int color = Color.parseColor("#79aaff");
+        AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, color, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                button.setBackgroundColor(color);
+                setColor(color);
+            }
+
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+                // cancel was selected by the user
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }
 
