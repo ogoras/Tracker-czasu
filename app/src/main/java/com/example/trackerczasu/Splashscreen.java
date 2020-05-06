@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class Splashscreen extends Activity {
-    private final int SPLASH_DISPLEY_LEHGHT = 2000; //2000 ms
+
+    private final int SPLASH_DISPLEY_LEHGHT = 10; //2000 ms
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

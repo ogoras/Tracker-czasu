@@ -7,7 +7,7 @@ public class TActivity {
     public String type;
     public String tag;
     public String comment;
-    public long startTime;
+    public long startTime; // in seconds
     public long endTime;
 
     TActivity(String type) {

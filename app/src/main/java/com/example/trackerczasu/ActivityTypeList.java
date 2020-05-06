@@ -3,7 +3,7 @@ package com.example.trackerczasu;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityTypeList {
+public class ActivityTypeList { //list containing objects of type ActivityType and its size
     public int size;
 
     public List<ActivityType> ActivityTypes;
@@ -25,7 +25,7 @@ public class ActivityTypeList {
             size--;
     }
 
-    public boolean findType(String name)
+    public boolean findType(String name)  //checks if activity of name exists in ActivityTypes list
     {
         for (ActivityType A : ActivityTypes) {
             if (A.name == name)
