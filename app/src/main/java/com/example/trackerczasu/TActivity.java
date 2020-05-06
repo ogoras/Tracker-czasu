@@ -1,6 +1,8 @@
-package com.example.trackerczasu;
+package text_interface;
 
-public class TActivity {
+import java.io.Serializable;
+
+public class TActivity implements Serializable{
     private int id;
 
     public boolean isCurrent;

@@ -1,13 +1,13 @@
-package com.example.trackerczasu;
+package text_interface;
 
-import android.graphics.Color;
-import android.view.animation.AccelerateInterpolator;
+//import android.graphics.Color;
+//import android.view.animation.AccelerateInterpolator;
 
 public class ActivityType {
     private int id;
 
     public String name;
-    private Color color;
+/*    private Color color;
 
     ActivityType (String name){
         this.name = name;
@@ -26,7 +26,7 @@ public class ActivityType {
     public void changeColor(Color color) {
         this.color = color;
     }
-
+*/
 
     public void changeName(String name)
     {

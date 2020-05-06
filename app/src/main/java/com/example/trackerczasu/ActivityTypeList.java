@@ -1,4 +1,4 @@
-package com.example.trackerczasu;
+package text_interface;
 
 import java.util.ArrayList;
 import java.util.List;

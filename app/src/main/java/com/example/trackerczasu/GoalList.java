@@ -1,4 +1,4 @@
-package com.example.trackerczasu;
+package text_interface;
 
 public class GoalList {
 

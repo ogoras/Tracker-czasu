@@ -1,9 +1,10 @@
-package com.example.trackerczasu;
+package text_interface;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserActivities {
+public class UserActivities implements Serializable{
     public int size;
     public List<TActivity> List;
 
@@ -27,7 +28,7 @@ public class UserActivities {
     public TActivity getCurrentActivity() //tak jak wyzej
     {
         for (TActivity A : List) {
-            if (A.isCurrent = true)
+            if (A.isCurrent == true)
                 return A;
         }
         return null;
