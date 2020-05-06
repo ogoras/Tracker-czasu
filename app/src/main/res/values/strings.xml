@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Tracker czasu</string>
     <string name="edit_message">Enter name</string>
-    <string name="button_send">Track</string>
+    <string name="button_send">Add</string>
+    <string name="button_track">Track</string>
+    <string name="button_delete">Delete</string>
 </resources>

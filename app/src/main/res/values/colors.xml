@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#79aaff</color>
-    <color name="colorPrimaryDark">#005dff</color>
-    <color name="colorAccent">#8f61ff</color>
+    <color name="colorPrimaryDark">#BDB127</color>
+    <color name="colorAccent">#6f347c</color>
+    <color name="colorPrimary">#e9d92e</color>
+    <color name="colorSport">#0000ff</color>
+    <color name="colorBook">#a67c52</color>
+    <color name="colorWork">#666666</color>
+    <color name="colorMakeUp">#ff0000</color>
+    <color name="colorFood">#c69c6d</color>
+    <color name="colorFoodCheese">#ffff00</color>
+    <color name="colorInternetOrange">#fe7400</color>
+    <color name="colorInternetYellow">#e4c400</color>
 </resources>
