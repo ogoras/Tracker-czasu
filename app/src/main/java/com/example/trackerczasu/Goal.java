@@ -49,10 +49,7 @@ public class Goal {
     {
         this.comment = comment;
     }
-    public boolean updateIsAchieved() // update variable to reflect the truth
-    {
-        ;
-        return true;
-    }
+    //public boolean updateIsAchieved() // update variable to reflect the truth
+
 
 }

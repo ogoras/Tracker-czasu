@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class Splashscreen extends Activity {
-<<<<<<< Updated upstream
+
     private final int SPLASH_DISPLEY_LEHGHT = 10; //2000 ms
-=======
-    private final int SPLASH_DISPLEY_LEHGHT = 100; //2000 ms
->>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
