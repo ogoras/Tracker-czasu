@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         String message = editText.getText().toString();
         ActivityType A = new ActivityType(message);
 
-        if(message.equals("") == false){
+        if(!message.equals("")){
             typeList.addType(A);
             mAdapter = new MyAdapter(typeList, this);
             recyclerView.setAdapter(mAdapter);
@@ -59,5 +59,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void delType(ActivityType type) {
+        typeList.deleteType(type);
+        mAdapter = new MyAdapter(typeList, this);
+        recyclerView.setAdapter(mAdapter);
+    }
 }
 
