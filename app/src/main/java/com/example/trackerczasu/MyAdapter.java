@@ -1,6 +1,5 @@
 package com.example.trackerczasu;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private ActivityTypeList typeList;
@@ -20,10 +18,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public Button button;
-        public MyViewHolder(Button v) {
+        public Button track_button, delete_button;
+        public TextView textView;
+        public MyViewHolder(View v) {
             super(v);
-            button = v;
+            track_button = v.findViewById(R.id.track_button);
+            delete_button = v.findViewById(R.id.delete_button);
+            textView = v.findViewById(R.id.name_view);
         }
     }
 
@@ -38,8 +39,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
         // create a new view
-        Button v = (Button) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_button, parent, false);
+        View v = (View) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_row_view, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -49,10 +50,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.button.setText(typeList.ActivityTypes.get(position).name);
-        holder.button.setOnClickListener(new View.OnClickListener() {
+        holder.textView.setText(typeList.ActivityTypes.get(position).name);
+        holder.track_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 context.startTracking(typeList.ActivityTypes.get(position));
+            }
+        });
+        holder.delete_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                context.delType(typeList.ActivityTypes.get(position));
             }
         });
     }
