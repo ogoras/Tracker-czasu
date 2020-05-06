@@ -24,7 +24,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView = (RecyclerView) findViewById(R.id.typesView);
+        recyclerView.setHasFixedSize(true);
 
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        mAdapter = new MyAdapter(typeList, this);
+        recyclerView.setAdapter(mAdapter);
     }
     public static TActivity testActivity;
 
