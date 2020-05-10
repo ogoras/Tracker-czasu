@@ -1,9 +1,10 @@
 package com.example.trackerczasu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityTypeList { //list containing objects of type ActivityType and its size
+public class ActivityTypeList implements Serializable { //list containing objects of type ActivityType and its size
     public int size;
 
     public List<ActivityType> ActivityTypes;
