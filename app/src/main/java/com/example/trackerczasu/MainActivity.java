@@ -21,6 +21,20 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        int[] tabIcons = {
+                R.drawable.book,
+                R.drawable.food,
+                R.drawable.internet,
+                R.drawable.ambilwarna_arrow_right,
+                R.drawable.sport
+        };
+
+        for(int i=0; i<tabs.getTabCount(); i++){
+            if(tabs.getTabAt(i) != null){
+                tabs.getTabAt(i).setIcon(tabIcons[i]);
+            }
+        }
     }
 
     @Override

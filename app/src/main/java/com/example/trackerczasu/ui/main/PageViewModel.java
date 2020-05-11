@@ -19,6 +19,8 @@ public class PageViewModel extends ViewModel {
                     return "Place for list of activity types";
                 case 3:
                     return "Place for goals";
+                case 5:
+                    return  "Item 1\nItem 2";
             }
             return "Place for stats and charts";
         }
