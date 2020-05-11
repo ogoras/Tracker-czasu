@@ -3,7 +3,9 @@ package com.example.trackerczasu;
 import android.graphics.Color;
 import android.view.animation.AccelerateInterpolator;
 
-public class ActivityType {
+import java.io.Serializable;
+
+public class ActivityType implements Serializable {
     private int id;
 
     public String name;
