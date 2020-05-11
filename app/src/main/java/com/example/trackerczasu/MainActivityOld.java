@@ -38,7 +38,7 @@ public class MainActivityOld extends AppCompatActivity {
         loadData();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_old);
+        setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView) findViewById(R.id.typesView);
         recyclerView.setHasFixedSize(true);
@@ -50,6 +50,8 @@ public class MainActivityOld extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
 
+
+
     }
     public static TActivity testActivity;
 
@@ -59,6 +61,7 @@ public class MainActivityOld extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString(); //name of activity
         ActivityType A = new ActivityType(message, color);
+
 
         if(!message.equals("")){
             typeList.addType(A);
@@ -114,7 +117,7 @@ public class MainActivityOld extends AppCompatActivity {
     {
         ArrayList<Object> typeListData = new ArrayList<Object>();
         typeListData.add(typeList);
-
+        typeListData.add(activityList);
         try {
             File directory = getFilesDir();
             File file = new File(directory, "data.ser");
@@ -124,7 +127,7 @@ public class MainActivityOld extends AppCompatActivity {
             out.writeObject(typeListData);
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved.");
+            System.out.println("State saved. (Serialized data is saved)");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -156,9 +159,15 @@ public class MainActivityOld extends AppCompatActivity {
             se.printStackTrace();
             return;
         }
+
         ActivityTypeList retrievedActivityTypeList = (ActivityTypeList) deserialized.get(0);
         typeList = retrievedActivityTypeList;
 
+        UserActivities retrievedActivityList;
+        if (deserialized.size()>=2) {
+            retrievedActivityList = (UserActivities) deserialized.get(1);
+            activityList = retrievedActivityList;
+        }
     }
 
 }
