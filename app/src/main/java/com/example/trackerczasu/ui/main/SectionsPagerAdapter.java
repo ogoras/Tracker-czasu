@@ -1,6 +1,8 @@
 package com.example.trackerczasu.ui.main;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.DisplayMetrics;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -32,11 +34,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return PlaceholderFragment.newInstance(position + 1);
     }
 
-
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return mContext.getResources().getString(TAB_TITLES[position]);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        float width = displayMetrics.widthPixels/displayMetrics.xdpi;
+        return width > 2.56 ? mContext.getResources().getString(TAB_TITLES[position]) : "";
     }
 
     @Override
