@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(typeList, this);
         recyclerView.setAdapter(mAdapter);
 
+        for (int i=0; i<activityList.List.size(); i++)
+            System.out.println(i+". " + activityList.List.get(i).type);
+
+
 
     }
     public static TActivity testActivity;
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString(); //name of activity
         ActivityType A = new ActivityType(message, color);
+
 
         if(!message.equals("")){
             typeList.addType(A);
@@ -116,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
     {
         ArrayList<Object> typeListData = new ArrayList<Object>();
         typeListData.add(typeList);
+        typeListData.add(activityList);
 
         try {
             File directory = getFilesDir();
@@ -158,9 +164,15 @@ public class MainActivity extends AppCompatActivity {
             se.printStackTrace();
             return;
         }
+
         ActivityTypeList retrievedActivityTypeList = (ActivityTypeList) deserialized.get(0);
         typeList = retrievedActivityTypeList;
 
+        UserActivities retrievedActivityList;
+        if (deserialized.size()>=2) {
+            retrievedActivityList = (UserActivities) deserialized.get(1);
+            activityList = retrievedActivityList;
+        }
     }
 
 }
