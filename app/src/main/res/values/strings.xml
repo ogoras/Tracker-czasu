@@ -5,8 +5,8 @@
     <string name="button_track">Track</string>
     <string name="button_delete">Delete</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="tab_text_4">Tab 4</string>
+    <string name="tab_text_1">Activities</string>
+    <string name="tab_text_2">Types</string>
+    <string name="tab_text_3">Goals</string>
+    <string name="tab_text_4">Stats</string>
 </resources>
