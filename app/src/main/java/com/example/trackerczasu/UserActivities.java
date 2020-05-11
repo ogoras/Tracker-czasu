@@ -1,9 +1,10 @@
 package com.example.trackerczasu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserActivities {
+public class UserActivities implements Serializable {
     public int size;
     public List<TActivity> List;
 
@@ -18,22 +19,22 @@ public class UserActivities {
         size++;
     }
 
-    public void endActivity(TActivity ActivityToEnd) //to samo, co niżej - po czym identyfikujemy TActivity - id, nazwa czy obiekt ma być przekazywany
+    public void endActivity(TActivity ActivityToEnd)
     {
         ActivityToEnd.isCurrent = false;
         ActivityToEnd.endTime = System.currentTimeMillis()/1000;
     }
 
-    public TActivity getCurrentActivity() //tak jak wyzej
+    public TActivity getCurrentActivity()
     {
         for (TActivity A : List) {
-            if (A.isCurrent = true)
+            if (A.isCurrent == true)
                 return A;
         }
         return null;
     }
 
-    public void deleteActivity(TActivity ActivityToDelete) //tak jak wyzej
+    public void deleteActivity(TActivity ActivityToDelete)
     {
         if (List.remove(ActivityToDelete))
             size--;

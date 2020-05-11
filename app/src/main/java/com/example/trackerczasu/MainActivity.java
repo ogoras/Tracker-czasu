@@ -13,6 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 
@@ -28,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+
+        loadData();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -57,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(mAdapter);
         }
 
+        saveData();
         editText.setText("");
 
     }
@@ -73,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         typeList.deleteType(type);
         mAdapter = new MyAdapter(typeList, this);
         recyclerView.setAdapter(mAdapter);
+
+        saveData(); //after the deletion this state should be saved (not required if user clicked cancelled that though)
     }
 
     public void pickColor(View view) {
@@ -97,5 +111,57 @@ public class MainActivity extends AppCompatActivity {
     public void setColor(int color) {
         this.color = color;
     }
+
+    public void saveData()
+    {
+        ArrayList<Object> typeListData = new ArrayList<Object>();
+        typeListData.add(typeList);
+
+        try {
+            File directory = getFilesDir();
+            File file = new File(directory, "data.ser");
+
+            FileOutputStream fileOut = new FileOutputStream(file);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(typeListData);
+            out.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadData ()
+    {
+        ArrayList<Object> deserialized = new ArrayList<Object>();
+
+        try {
+            File directory = getFilesDir(); //or getExternalFilesDir(null); for external storage
+            File file = new File(directory, "data.ser");
+            FileInputStream fileIn =  new FileInputStream(file);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            deserialized = (ArrayList<Object>) in.readObject();
+            in.close();
+            fileIn.close();
+
+        } catch (IOException i) {
+            i.printStackTrace();
+            return;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return;
+        } catch (SecurityException se) {
+            se.printStackTrace();
+            return;
+        }
+        ActivityTypeList retrievedActivityTypeList = (ActivityTypeList) deserialized.get(0);
+        typeList = retrievedActivityTypeList;
+
+    }
+
 }
 
