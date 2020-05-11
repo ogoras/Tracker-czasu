@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(typeList, this);
         recyclerView.setAdapter(mAdapter);
 
-        for (int i=0; i<activityList.List.size(); i++)
-            System.out.println(i+". " + activityList.List.get(i).type);
 
 
 
@@ -122,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Object> typeListData = new ArrayList<Object>();
         typeListData.add(typeList);
         typeListData.add(activityList);
-
         try {
             File directory = getFilesDir();
             File file = new File(directory, "data.ser");
@@ -132,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             out.writeObject(typeListData);
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved.");
+            System.out.println("State saved. (Serialized data is saved)");
 
         } catch (IOException e) {
             e.printStackTrace();
