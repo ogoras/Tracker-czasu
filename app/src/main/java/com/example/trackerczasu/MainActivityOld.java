@@ -38,7 +38,7 @@ public class MainActivityOld extends AppCompatActivity {
         loadData();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_old);
 
         recyclerView = (RecyclerView) findViewById(R.id.typesView);
         recyclerView.setHasFixedSize(true);

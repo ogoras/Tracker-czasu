@@ -4,9 +4,11 @@
     <string name="button_send">Add</string>
     <string name="button_track">Track</string>
     <string name="button_delete">Delete</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Tracker czasu</string>
     <string name="tab_text_1">Activities</string>
     <string name="tab_text_2">Types</string>
     <string name="tab_text_3">Goals</string>
     <string name="tab_text_4">Stats</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
 </resources>
