@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:tabMaxWidth="512dp"
             app:tabTextAppearance="@style/TextAppearance.AppCompat.Small" />
 
     </com.google.android.material.appbar.AppBarLayout>
