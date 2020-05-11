@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private ActivityTypeList typeList;
-    private MainActivity context;
+    private MainActivityOld context;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -29,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(ActivityTypeList myDataset, MainActivity context) {
+    public MyAdapter(ActivityTypeList myDataset, MainActivityOld context) {
         typeList = myDataset;
         this.context = context;
     }

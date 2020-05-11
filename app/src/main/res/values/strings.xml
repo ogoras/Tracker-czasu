@@ -4,4 +4,7 @@
     <string name="button_send">Add</string>
     <string name="button_track">Track</string>
     <string name="button_delete">Delete</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>
