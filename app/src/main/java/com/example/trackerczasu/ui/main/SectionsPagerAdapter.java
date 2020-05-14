@@ -40,8 +40,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         float width = displayMetrics.widthPixels/displayMetrics.xdpi;
-        float height = displayMetrics.heightPixels/displayMetrics.ydpi;
-        return (width > 2.57) ? mContext.getResources().getString(TAB_TITLES[position]) : "";
+//        float height = displayMetrics.heightPixels/displayMetrics.ydpi;
+        return (width > 3.0) ? mContext.getResources().getString(TAB_TITLES[position]) : "";
     }
 
     @Override
