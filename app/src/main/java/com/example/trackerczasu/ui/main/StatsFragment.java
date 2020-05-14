@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.trackerczasu.ActivityTypeList;
+import com.example.trackerczasu.GoalList;
 import com.example.trackerczasu.R;
+import com.example.trackerczasu.UserActivities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,14 +19,10 @@ import com.example.trackerczasu.R;
  * create an instance of this fragment.
  */
 public class StatsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private UserActivities activityList;
+    private ActivityTypeList typeList;
+    private GoalList goalList;
 
     public StatsFragment() {
         // Required empty public constructor
@@ -38,22 +37,17 @@ public class StatsFragment extends Fragment {
      * @return A new instance of fragment StatsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StatsFragment newInstance(String param1, String param2) {
+    public static StatsFragment newInstance(UserActivities activityList, ActivityTypeList typeList, GoalList goalList) {
         StatsFragment fragment = new StatsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        fragment.activityList = activityList;
+        fragment.typeList = typeList;
+        fragment.goalList = goalList;
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override

@@ -10,7 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.trackerczasu.ActivityTypeList;
+import com.example.trackerczasu.Goal;
+import com.example.trackerczasu.GoalList;
+import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
+import com.example.trackerczasu.UserActivities;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -21,10 +26,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4, R.string.tab_text_5};
     private final Context mContext;
+    private static UserActivities activityList;
+    private static ActivityTypeList typeList;
+    private static GoalList goalList;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, UserActivities activityList, ActivityTypeList typeList, GoalList goalList) {
         super(fm);
         mContext = context;
+        this.activityList = activityList;
+        this.typeList = typeList;
+        this.goalList = goalList;
     }
 
     @Override
@@ -33,13 +44,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position) {
             case 0:
-                return ActivitiesFragment.newInstance();
+                return ActivitiesFragment.newInstance(activityList, typeList);
             case 1:
-                return TypesFragment.newInstance();
+                return TypesFragment.newInstance(typeList);
             case 2:
-                return GoalsFragment.newInstance();
+                return GoalsFragment.newInstance(activityList, typeList, goalList);
             case 3:
-                return StatsFragment.newInstance();
+                return StatsFragment.newInstance(activityList, typeList, goalList);
             case 4:
                 return SettingsFragment.newInstance();
         }
