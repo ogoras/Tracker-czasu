@@ -59,6 +59,6 @@ class TypesAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 1;   //do zmiany na typeList.size
     }
 }
