@@ -1,17 +1,17 @@
 package com.example.trackerczasu.ui.main;
 
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.trackerczasu.ActivityTypeList;
 import com.example.trackerczasu.R;
-import com.example.trackerczasu.UserActivities;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
@@ -24,6 +24,10 @@ public class TypesFragment extends Fragment {
     private ActivityTypeList typeList;
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter mAdapter;
+    private Context context;
+    private View rootView;
 
     public TypesFragment() {
         // Required empty public constructor
@@ -51,6 +55,16 @@ public class TypesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_types, container, false);
+        rootView = inflater.inflate(R.layout.fragment_types, container, false);
+        context = getContext();
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(layoutManager);
+
+        mAdapter = new TypesAdapter(typeList, context);
+        recyclerView.setAdapter(mAdapter);
+        return rootView;
     }
 }
