@@ -33,7 +33,7 @@ class TypesAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-
+        //tutaj co się stanie po kliknięciu w element listy
         }
     }
 
@@ -54,7 +54,7 @@ class TypesAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        //tutaj wypełnienie elementu o nr position
     }
 
     @Override
