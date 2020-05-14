@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=0; i<tabs.getTabCount(); i++){
             if(tabs.getTabAt(i) != null){
-                try {
+                try {                                       //czasami są problemy z załadowaniem ikon
                     tabs.getTabAt(i).setIcon(tabIcons[i]);
                 }
                 catch (Exception E) {
