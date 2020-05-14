@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
         int[] tabIcons = {
-                R.drawable.book,
-                R.drawable.food,
-                R.drawable.internet,
-                R.drawable.ambilwarna_arrow_right,
-                R.drawable.sport
+                R.drawable.activities,
+                R.drawable.types,
+                R.drawable.goals,
+                R.drawable.stats,
+                R.drawable.settings
         };
 
         for(int i=0; i<tabs.getTabCount(); i++){
