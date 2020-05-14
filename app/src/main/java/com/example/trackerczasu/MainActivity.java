@@ -30,9 +30,16 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.settings
         };
 
+        final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4, R.string.tab_text_5};
+
         for(int i=0; i<tabs.getTabCount(); i++){
             if(tabs.getTabAt(i) != null){
-                tabs.getTabAt(i).setIcon(tabIcons[i]);
+                try {
+                    tabs.getTabAt(i).setIcon(tabIcons[i]);
+                }
+                catch (Exception E) {
+                    tabs.getTabAt(i).setText(TAB_TITLES[i]);
+                }
             }
         }
     }
