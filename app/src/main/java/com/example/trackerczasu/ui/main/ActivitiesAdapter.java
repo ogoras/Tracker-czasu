@@ -37,7 +37,6 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
     }
 
     public static class ViewHolderStopped extends RecyclerView.ViewHolder implements View.OnClickListener {
-        // each data item is just a string in this case
         public TextView start_time;
         public TextView end_time;
         public ImageView icon;
