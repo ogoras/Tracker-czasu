@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import com.example.trackerczasu.ActivityTypeList;
 import com.example.trackerczasu.R;
 
 class TypesAdapter extends RecyclerView.Adapter {
-    private ActivityTypeList typeList;
+    private static ActivityTypeList typeList;
     private Context context;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

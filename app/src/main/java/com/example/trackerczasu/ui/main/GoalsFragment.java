@@ -1,12 +1,11 @@
 package com.example.trackerczasu.ui.main;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.trackerczasu.ActivityTypeList;
 import com.example.trackerczasu.GoalList;
@@ -21,9 +20,9 @@ import com.example.trackerczasu.UserActivities;
 public class GoalsFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
-    private UserActivities activityList;
-    private ActivityTypeList typeList;
-    private GoalList goalList;
+    private static UserActivities activityList;
+    private static ActivityTypeList typeList;
+    private static GoalList goalList;
 
     public GoalsFragment() {
         // Required empty public constructor

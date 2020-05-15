@@ -23,8 +23,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ActivitiesFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
-    private UserActivities activityList;
-    private ActivityTypeList typeList;
+    private static UserActivities activityList;
+    private static ActivityTypeList typeList;
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
     private RecyclerView.LayoutManager layoutManager;
