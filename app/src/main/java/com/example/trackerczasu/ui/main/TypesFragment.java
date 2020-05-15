@@ -21,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  */
 public class TypesFragment extends Fragment {
     // TODO: Rename and change types of parameters
-    private ActivityTypeList typeList;
+    private static ActivityTypeList typeList;
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
     private RecyclerView.LayoutManager layoutManager;

@@ -28,9 +28,9 @@ public class UserActivities implements Serializable {
     public TActivity getCurrentActivity()
     {
         for (TActivity A : List) {
-            if (A.isCurrent == true)
-                return A;
-        }
+        if (A.isCurrent == true)
+            return A;
+    }
         return null;
     }
 
