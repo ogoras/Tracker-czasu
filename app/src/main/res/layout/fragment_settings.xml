@@ -26,10 +26,10 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="395dp"
-            android:layout_height="191dp"
+            android:layout_width="393dp"
+            android:layout_height="140dp"
             android:text="@string/this_application_is_designed_to_track_activity_throughout_the_day_using_it_you_can_track_what_percentage_of_the_time_from_a_day_week_month_etc_you_have_any_activity_convenient_and_easy_interface_allows_any_user_to_use_this_application"
-            android:textSize="21"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.437"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
             android:layout_width="404dp"
             android:layout_height="89dp"
             android:text="@string/if_you_have_any_problems_using_this_application_please_write_to_this_email_or_github"
-            android:textSize="21"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
             android:hint="@string/https_github_com_ogoras_tracker_czasu_git"
-            android:textSize="19"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
