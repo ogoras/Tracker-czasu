@@ -65,6 +65,8 @@ public class TypesFragment extends Fragment {
 
         mAdapter = new TypesAdapter(typeList, context);
         recyclerView.setAdapter(mAdapter);
+        fab = rootView.findViewById(R.id.floatingActionButton3);
+
         return rootView;
     }
 }
