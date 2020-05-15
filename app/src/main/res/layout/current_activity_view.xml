@@ -8,7 +8,7 @@
     android:clickable="true">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tagView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -17,8 +17,8 @@
         android:background="#4CAF50"
         android:text="tag"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/typeView"
+        app:layout_constraintStart_toEndOf="@+id/typeView" />
 
     <FrameLayout
         android:id="@+id/item_line"
@@ -28,7 +28,7 @@
         android:layout_marginLeft="16dp"
         android:background="@color/colorPrimary"
         android:padding="2dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2">
+        app:layout_constraintStart_toEndOf="@+id/icon">
 
         <!-- the semi transparent circle on the line -->
         <View
@@ -43,16 +43,16 @@
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/icon"
         android:layout_width="45dp"
         android:layout_height="43dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintBottom_toTopOf="@+id/startView"
+        app:layout_constraintEnd_toEndOf="@+id/startView"
         app:srcCompat="@drawable/sport" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/commentView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toTopOf="@+id/simpleChronometer" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/typeView"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
@@ -82,11 +82,11 @@
         android:layout_marginTop="8dp"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="@+id/typeView"
+        app:layout_constraintTop_toBottomOf="@+id/typeView" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/startView"
         android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:gravity="end"

@@ -49,7 +49,14 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
 
         public ViewHolderStopped(View v) {
             super(v);
-            //tu pobieramy uchwyty do elementów
+            start_time = v.findViewById(R.id.startView);
+            end_time = v.findViewById(R.id.endView);
+            icon = v.findViewById(R.id.icon);
+            item_line = v.findViewById(R.id.item_line);
+            name = v.findViewById(R.id.typeView);
+            tag = v.findViewById(R.id.tagView);
+            comment = v.findViewById(R.id.commentView);
+            duration = v.findViewById(R.id.durationView);
         }
 
         @Override
@@ -71,7 +78,13 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
 
         public ViewHolderCurrent(View v) {
             super(v);
-            //tu pobieramy uchwyty do elementów
+            start_time = v.findViewById(R.id.startView);
+            icon = v.findViewById(R.id.icon);
+            item_line = v.findViewById(R.id.item_line);
+            name = v.findViewById(R.id.typeView);
+            tag = v.findViewById(R.id.tagView);
+            comment = v.findViewById(R.id.commentView);
+            timer = v.findViewById(R.id.simpleChronometer);
         }
 
         @Override
@@ -120,6 +133,6 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 10;  //tu docelowo activityList.size
     }
 }
