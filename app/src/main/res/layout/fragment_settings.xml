@@ -10,35 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/editText3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/hi_my_dear_user"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textView5"
             android:layout_width="393dp"
             android:layout_height="140dp"
-            android:text="@string/this_application_is_designed_to_track_activity_throughout_the_day_using_it_you_can_track_what_percentage_of_the_time_from_a_day_week_month_etc_you_have_any_activity_convenient_and_easy_interface_allows_any_user_to_use_this_application"
+            android:text="@string/this_application_is_designed_to_track_activity_throughout_the_day_using_it_you_can_track_what_percentage_of_the_time_from_a_day_week_month_etc_you_have_in_any_activity_convenient_and_easy_interface_allows_any_user_to_use_this_application"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.437"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="404dp"
-            android:layout_height="89dp"
+            android:layout_width="394dp"
+            android:layout_height="53dp"
             android:text="@string/if_you_have_any_problems_using_this_application_please_write_to_this_email_or_github"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,40 +49,48 @@
             app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputEditText2" />
+            app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="398dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/support_trackertime_tt_com"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6">
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            android:autofillHints="" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/support_trackertime_tt_com"
-            android:textSize="24sp"
+        <EditText
+            android:id="@+id/editText6"
+            android:layout_width="365dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/https_github_com_ogoras_tracker_czasu_git"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/editText5"
+            android:autofillHints="" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText2"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/editText7"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:hint="@string/https_github_com_ogoras_tracker_czasu_git"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/hi_my_dear_user"
+            android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textInputEditText" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
