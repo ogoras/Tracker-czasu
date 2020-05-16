@@ -40,9 +40,10 @@ public class TypesFragment extends Fragment {
      * @return A new instance of fragment TypesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TypesFragment newInstance(ActivityTypeList typeList) {
+    public static TypesFragment newInstance(Context context, ActivityTypeList typeList) {
         TypesFragment fragment = new TypesFragment();
         fragment.typeList = typeList;
+        fragment.context = context;
         return fragment;
     }
 
@@ -56,7 +57,6 @@ public class TypesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_types, container, false);
-        context = getContext();
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 

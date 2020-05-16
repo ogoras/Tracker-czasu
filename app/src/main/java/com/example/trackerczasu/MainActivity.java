@@ -15,15 +15,31 @@ public class MainActivity extends AppCompatActivity {
     private static UserActivities activityList = new UserActivities();
     private static GoalList goalList = new GoalList();
     private static ActivityTypeList typeList = new ActivityTypeList();
+    private static TabLayout tabs;
+    private static ViewPager viewPager;
+    private static SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), activityList, typeList, goalList);
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), activityList, typeList, goalList);
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
+        tabs = findViewById(R.id.tabs);
+        tabsSetup();
+
+
+        typeList.addType(new ActivityType("Studying", R.drawable.school));
+        typeList.addType(new ActivityType("Sleeping", R.drawable.sleep));
+        typeList.addType(new ActivityType("Driving", R.drawable.car));
+        typeList.addType(new ActivityType("Reading", R.drawable.book));
+        typeList.addType(new ActivityType("Working", R.drawable.work));
+        typeList.addType(new ActivityType("Music", R.drawable.music));
+        typeList.addType(new ActivityType("Cooking", R.drawable.food));
+    }
+
+    private void tabsSetup() {
         tabs.setupWithViewPager(viewPager);
 
         int[] tabIcons = {
@@ -46,15 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
-
-        typeList.addType(new ActivityType("Studying", R.drawable.school));
-        typeList.addType(new ActivityType("Sleeping", R.drawable.sleep));
-        typeList.addType(new ActivityType("Driving", R.drawable.car));
-        typeList.addType(new ActivityType("Reading", R.drawable.book));
-        typeList.addType(new ActivityType("Working", R.drawable.work));
-        typeList.addType(new ActivityType("Music", R.drawable.music));
-        typeList.addType(new ActivityType("Cooking", R.drawable.food));
     }
 
     @Override
@@ -62,6 +69,21 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_example, menu);
         return true;
+    }
+
+    public void startTracking(ActivityType type) {
+        TActivity currentActivity = activityList.getCurrentActivity();
+        if(currentActivity!=null){
+            if (!currentActivity.type.equals(type.getName())) {
+                currentActivity.isCurrent = false;
+                currentActivity.endTime = System.currentTimeMillis() / 1000;
+                activityList.addActivity(new TActivity(type.getName()));
+            }
+        }
+        else
+            activityList.addActivity(new TActivity(type.getName()));
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabsSetup();
     }
 
 }

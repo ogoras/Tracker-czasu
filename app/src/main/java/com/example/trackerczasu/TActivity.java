@@ -30,7 +30,7 @@ public class TActivity implements Serializable {
     }
 
     public boolean editType(ActivityTypeList List, String name){
-        if(List.findType(name)) {
+        if(List.findType(name)!=null) {
             type = name;
             return true;
         }

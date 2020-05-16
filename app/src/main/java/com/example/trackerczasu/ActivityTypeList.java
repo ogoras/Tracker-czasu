@@ -2,7 +2,6 @@ package com.example.trackerczasu;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ActivityTypeList implements Serializable { //list containing objects of type ActivityType and its size
     public int size;
@@ -24,12 +23,12 @@ public class ActivityTypeList implements Serializable { //list containing object
             size--;
     }
 
-    public boolean findType(String name) { //checks if activity of name exists in ActivityTypes list
+    public ActivityType findType(String name) { //checks if activity of name exists in ActivityTypes list
         for (ActivityType A : ActivityTypes) {
             if (A.name == name)
-                return true;
+                return A;
         }
-        return false;
+        return null;
     }
 
     public ActivityType get(int position) {

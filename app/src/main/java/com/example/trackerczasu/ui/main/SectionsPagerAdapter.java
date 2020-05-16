@@ -11,9 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.trackerczasu.ActivityTypeList;
-import com.example.trackerczasu.Goal;
 import com.example.trackerczasu.GoalList;
-import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
 import com.example.trackerczasu.UserActivities;
 
@@ -46,7 +44,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return ActivitiesFragment.newInstance(activityList, typeList);
             case 1:
-                return TypesFragment.newInstance(typeList);
+                return TypesFragment.newInstance(mContext, typeList);
             case 2:
                 return GoalsFragment.newInstance(activityList, typeList, goalList);
             case 3:

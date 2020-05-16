@@ -71,7 +71,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Type name"
-        android:textColor="#0013FF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/item_line"

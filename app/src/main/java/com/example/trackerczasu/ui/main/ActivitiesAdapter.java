@@ -1,6 +1,7 @@
 package com.example.trackerczasu.ui.main;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackerczasu.ActivityTypeList;
 import com.example.trackerczasu.R;
+import com.example.trackerczasu.TActivity;
 import com.example.trackerczasu.UserActivities;
+
+import static com.example.trackerczasu.TimeFormat.HourAndMinute;
+import static com.example.trackerczasu.TimeFormat.HourAndMinuteAndSecond;
+import static com.example.trackerczasu.TimeFormat.HourAndMinutePL;
 
 
 class ActivitiesAdapter extends RecyclerView.Adapter {
@@ -98,7 +104,10 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (getItemCount() == 1) {
+        if (position == getItemCount() - 1){
+            return VIEW_TYPE_EMPTY;
+        }
+        else if (getItemCount() == 2) {
             if (activityList.getCurrentActivity() != null)
                 return VIEW_TYPE_START;
             else return VIEW_TYPE_ONLY;
@@ -111,9 +120,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
     else if (position == getItemCount() - 2) {
                 return VIEW_TYPE_BOTTOM;
             }
-    else if (position == getItemCount() - 1){
-            return VIEW_TYPE_EMPTY;
-        }
+    else
             return VIEW_TYPE_MIDDLE;
         }
 
@@ -141,6 +148,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() != VIEW_TYPE_EMPTY) {
+            TActivity tActivity = activityList.List.get(activityList.size - 1 - position);
             ViewHolder holder1 = (ViewHolder) holder;
             //TODO: tu wypełniamy element o numerze position
             switch (holder.getItemViewType()) {
@@ -161,11 +169,31 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                 case VIEW_TYPE_ONLY:
                     holder1.dot.setVisibility(View.GONE);
             }
+            holder1.comment.setText(tActivity.comment);
+            holder1.icon.setImageResource(typeList.findType(tActivity.type).getIcon());
+            holder1.name.setText(tActivity.type);
+            holder1.tag.setText(tActivity.tag);
+            switch (holder.getItemViewType()){
+                case VIEW_TYPE_START:
+                    holder1.start_time.setText(HourAndMinutePL(tActivity.startTime));
+                case VIEW_TYPE_CURRENT:
+                    ViewHolderCurrent holder2 = (ViewHolderCurrent)holder;
+                    holder2.timer.setBase(SystemClock.elapsedRealtime() - (System.currentTimeMillis() - tActivity.startTime*1000 ) );
+                    holder2.timer.start();
+                    break;
+                case VIEW_TYPE_ONLY:
+                case VIEW_TYPE_BOTTOM:
+                    holder1.start_time.setText(HourAndMinutePL(tActivity.startTime));
+                case VIEW_TYPE_MIDDLE:
+                    ViewHolderStopped holder3 = (ViewHolderStopped)holder;
+                    holder3.end_time.setText(HourAndMinutePL(tActivity.endTime));
+                    holder3.duration.setText(HourAndMinuteAndSecond(tActivity.getDuration()));
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return 10;  //tu docelowo activityList.size + 1
+        return activityList.size + 1;
     }
 }

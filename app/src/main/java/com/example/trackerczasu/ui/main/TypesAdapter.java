@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackerczasu.ActivityType;
 import com.example.trackerczasu.ActivityTypeList;
+import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
 
 
@@ -54,10 +55,15 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.TypesViewHol
 
     @Override
     public void onBindViewHolder(@NonNull TypesViewHolder holder, int position) {
-        ActivityType currentItem = typeList.get(position);
+        final ActivityType currentItem = typeList.get(position);
 
         holder.name.setText(currentItem.getName());
         holder.typeIcon.setImageResource(currentItem.getIcon());
+        holder.track_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ((MainActivity)context).startTracking(currentItem);
+            }
+        });
     }
 
     @Override
