@@ -9,6 +9,7 @@
         android:roundIcon="@drawable/time_image"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.main.AddTypeActivity"></activity>
         <activity android:name=".GoalsActivity" />
         <activity
             android:name=".DisplayMessageActivity"
@@ -36,7 +37,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityOld"></activity>
+        <activity android:name=".MainActivityOld" />
     </application>
 
 </manifest>
