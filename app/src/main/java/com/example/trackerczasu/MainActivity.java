@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static UserActivities activityList = new UserActivities();
     private static GoalList goalList = new GoalList();
-    private static ActivityTypeList typeList = new ActivityTypeList();
+    public static ActivityTypeList typeList = new ActivityTypeList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
