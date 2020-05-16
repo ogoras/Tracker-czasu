@@ -50,6 +50,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
         public TextView name;
         public TextView tag;
         public TextView comment;
+        public View dot;
 
         public ViewHolder(View v) {
             super(v);
@@ -59,6 +60,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
             name = v.findViewById(R.id.typeView);
             tag = v.findViewById(R.id.tagView);
             comment = v.findViewById(R.id.commentView);
+            dot = v.findViewById(R.id.dot);
         }
     }
 
@@ -155,6 +157,9 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                 case VIEW_TYPE_BOTTOM:
                     holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_bottom));
                     break;
+                case VIEW_TYPE_START:
+                case VIEW_TYPE_ONLY:
+                    holder1.dot.setVisibility(View.GONE);
             }
         }
     }

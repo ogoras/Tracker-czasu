@@ -26,12 +26,12 @@
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:background="@color/colorPrimary"
         android:padding="2dp"
         app:layout_constraintStart_toEndOf="@+id/icon">
 
         <!-- the semi transparent circle on the line -->
         <View
+            android:id="@+id/dot"
             android:layout_width="11dp"
             android:layout_height="11dp"
             android:layout_marginTop="16dp"
