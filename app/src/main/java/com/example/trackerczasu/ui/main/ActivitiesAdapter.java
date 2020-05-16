@@ -116,12 +116,12 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
         if (viewType == VIEW_TYPE_CURRENT || viewType == VIEW_TYPE_START) {
             View v = (View) LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.current_activity_view, parent, false);
-            TypesAdapter.MyViewHolder vh = new TypesAdapter.MyViewHolder(v);
+            TypesAdapter.TypesViewHolder vh = new TypesAdapter.TypesViewHolder(v);
             return vh;
         }
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_view, parent, false);
-        TypesAdapter.MyViewHolder vh = new TypesAdapter.MyViewHolder(v);
+        TypesAdapter.TypesViewHolder vh = new TypesAdapter.TypesViewHolder(v);
         return vh;
     }
 

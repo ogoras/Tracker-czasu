@@ -11,23 +11,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trackerczasu.ActivityType;
 import com.example.trackerczasu.ActivityTypeList;
 import com.example.trackerczasu.R;
 
-class TypesAdapter extends RecyclerView.Adapter {
+
+public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.TypesViewHolder> {
     private static ActivityTypeList typeList;
     private Context context;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class TypesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public ImageButton track_button;
-        public TextView textView;
-        public ImageView imageView;
-        public MyViewHolder(View v) {
+        public TextView name;
+        public ImageView typeIcon;
+        public TypesViewHolder(View v) {
             super(v);
             track_button = v.findViewById(R.id.imageButton);
-            textView = v.findViewById(R.id.name_view2);
-            imageView = v.findViewById(R.id.imageView);
+            name = v.findViewById(R.id.name_view2);
+            typeIcon = v.findViewById(R.id.imageView);
         }
 
         @Override
@@ -44,20 +46,22 @@ class TypesAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = (View) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.type_row_view, parent, false);
-        MyViewHolder vh = new MyViewHolder(v);
-        return vh;
+    public TypesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.type_row_view, parent, false);
+        TypesViewHolder tvh = new TypesViewHolder(v);
+        return tvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        //tutaj wypełnienie elementu o nr position
+    public void onBindViewHolder(@NonNull TypesViewHolder holder, int position) {
+        ActivityType currentItem = typeList.get(position);
+
+        holder.name.setText(currentItem.getName());
+        holder.typeIcon.setImageResource(currentItem.getIcon());
     }
 
     @Override
     public int getItemCount() {
-        return 1;   //do zmiany na typeList.size
+        return typeList.size;   //do zmiany na typeList.size
     }
 }

@@ -10,19 +10,30 @@ public class ActivityType implements Serializable {
 
     public String name;
     private int color;
+    public int icon;
 
-    ActivityType (String name){
+    public ActivityType (String name, int icon){
         this.name = name;
         this.color = Color.parseColor("#8f61ff");   //kolor domyslny
+        this.icon = icon;
 }
 
-    ActivityType (String name, int color) {
+    public ActivityType (String name, int color, int icon) {
         this.name = name;
         this.color = color;
+        this.icon = icon;
     }
 
     public int getColor() {
         return color;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getIcon(){
+        return icon;
     }
 
     public void changeColor(int color) {
