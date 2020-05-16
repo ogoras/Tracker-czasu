@@ -28,12 +28,19 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_CURRENT = 3; //aktywność trwająca
     private static final int VIEW_TYPE_START = 4;   //aktywność trwająca, jeśli nie ma poprzedników
     private static final int VIEW_TYPE_ONLY = 5;    //jedyna aktywność na liście, zakończona
+    private static final int VIEW_TYPE_EMPTY = 6;   //puste pole pod spodem
 
     public ActivitiesAdapter(UserActivities activityList, ActivityTypeList typeList, Context context) {
             super();
             this.activityList = activityList;
             this.typeList = typeList;
             this.context = context;
+    }
+
+    private static class ViewHolderEmpty extends RecyclerView.ViewHolder {
+        public ViewHolderEmpty(View v) {
+            super(v);
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -99,9 +106,12 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                 return VIEW_TYPE_CURRENT;
             return VIEW_TYPE_TOP;
         }
-    else if (position == getItemCount() - 1) {
+    else if (position == getItemCount() - 2) {
                 return VIEW_TYPE_BOTTOM;
             }
+    else if (position == getItemCount() - 1){
+            return VIEW_TYPE_EMPTY;
+        }
             return VIEW_TYPE_MIDDLE;
         }
 
@@ -114,6 +124,12 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
             ViewHolderCurrent vh = new ViewHolderCurrent(v);
             return vh;
         }
+        else if (viewType == VIEW_TYPE_EMPTY) {
+            View v = (View) LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.empty_row_view, parent, false);
+            ViewHolderEmpty vh = new ViewHolderEmpty(v);
+            return vh;
+        }
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_view, parent, false);
         ViewHolderStopped vh = new ViewHolderStopped(v);
@@ -122,27 +138,29 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolder holder1 = (ViewHolder) holder;
-        //TODO: tu wypełniamy element o numerze position
-        switch(holder.getItemViewType()) {
-            case VIEW_TYPE_CURRENT:
-            case VIEW_TYPE_TOP:
-                // The top of the line has to be rounded
-                holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_top));
-                break;
-            case VIEW_TYPE_MIDDLE:
-                // Only the color could be enough
-                // but a drawable can be used to make the cap rounded also here
-                holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_middle));
-                break;
-            case VIEW_TYPE_BOTTOM:
-                holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_bottom));
-                break;
+        if (holder.getItemViewType() != VIEW_TYPE_EMPTY) {
+            ViewHolder holder1 = (ViewHolder) holder;
+            //TODO: tu wypełniamy element o numerze position
+            switch (holder.getItemViewType()) {
+                case VIEW_TYPE_CURRENT:
+                case VIEW_TYPE_TOP:
+                    // The top of the line has to be rounded
+                    holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_top));
+                    break;
+                case VIEW_TYPE_MIDDLE:
+                    // Only the color could be enough
+                    // but a drawable can be used to make the cap rounded also here
+                    holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_middle));
+                    break;
+                case VIEW_TYPE_BOTTOM:
+                    holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_bottom));
+                    break;
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return 10;  //tu docelowo activityList.size
+        return 10;  //tu docelowo activityList.size + 1
     }
 }
