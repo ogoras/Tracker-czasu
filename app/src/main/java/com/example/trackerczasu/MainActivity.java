@@ -13,8 +13,8 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     private static UserActivities activityList = new UserActivities();
-    private static ActivityTypeList typeList = new ActivityTypeList();
     private static GoalList goalList = new GoalList();
+    private static ActivityTypeList typeList = new ActivityTypeList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
+
+        typeList.addType(new ActivityType("Studying", R.drawable.school));
+        typeList.addType(new ActivityType("Sleeping", R.drawable.sleep));
+        typeList.addType(new ActivityType("Driving", R.drawable.car));
+        typeList.addType(new ActivityType("Reading", R.drawable.book));
+        typeList.addType(new ActivityType("Working", R.drawable.work));
+        typeList.addType(new ActivityType("Music", R.drawable.music));
+        typeList.addType(new ActivityType("Cooking", R.drawable.food));
     }
 
     @Override
@@ -54,4 +63,5 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_example, menu);
         return true;
     }
+
 }

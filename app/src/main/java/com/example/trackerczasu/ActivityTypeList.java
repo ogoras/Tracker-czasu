@@ -7,31 +7,33 @@ import java.util.List;
 public class ActivityTypeList implements Serializable { //list containing objects of type ActivityType and its size
     public int size;
 
-    public List<ActivityType> ActivityTypes;
+    public ArrayList<ActivityType> ActivityTypes;
 
-    ActivityTypeList () {
+    public ActivityTypeList () {
         ActivityTypes = new ArrayList<ActivityType>();
         size = 0;
     }
 
-    public void addType(ActivityType A)
-    {
+    public void addType(ActivityType A){
         ActivityTypes.add(A);
         size++;
     }
 
-    public void deleteType(ActivityType A)
-    {
+    public void deleteType(ActivityType A) {
         if(ActivityTypes.remove(A))
             size--;
     }
 
-    public boolean findType(String name)  //checks if activity of name exists in ActivityTypes list
-    {
+    public boolean findType(String name) { //checks if activity of name exists in ActivityTypes list
         for (ActivityType A : ActivityTypes) {
             if (A.name == name)
                 return true;
         }
         return false;
+    }
+
+    public ActivityType get(int position) {
+        ActivityType currentItem = ActivityTypes.get(position);
+        return currentItem;
     }
 }
