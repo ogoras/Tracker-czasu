@@ -187,6 +187,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                         public void onClick(View v) {
                             activityList.getCurrentActivity().endTime = System.currentTimeMillis()/1000;
                             activityList.getCurrentActivity().isCurrent = false;
+                            ((MainActivity)context).saveData();
                             ((MainActivity)context).tabsSetup();
                         }
                     });
