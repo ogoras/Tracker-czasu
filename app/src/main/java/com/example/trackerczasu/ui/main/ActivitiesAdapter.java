@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackerczasu.ActivityTypeList;
+import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
 import com.example.trackerczasu.TActivity;
 import com.example.trackerczasu.UserActivities;
@@ -94,6 +95,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
         public ViewHolderCurrent(View v) {
             super(v);
             timer = v.findViewById(R.id.simpleChronometer);
+            stop_button = v.findViewById(R.id.imageButton2);
         }
 
         @Override
@@ -180,11 +182,20 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                     ViewHolderCurrent holder2 = (ViewHolderCurrent)holder;
                     holder2.timer.setBase(SystemClock.elapsedRealtime() - (System.currentTimeMillis() - tActivity.startTime*1000 ) );
                     holder2.timer.start();
+                    holder2.stop_button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            activityList.getCurrentActivity().endTime = System.currentTimeMillis()/1000;
+                            activityList.getCurrentActivity().isCurrent = false;
+                            ((MainActivity)context).tabsSetup();
+                        }
+                    });
                     break;
                 case VIEW_TYPE_ONLY:
                 case VIEW_TYPE_BOTTOM:
                     holder1.start_time.setText(HourAndMinutePL(tActivity.startTime));
                 case VIEW_TYPE_MIDDLE:
+                case VIEW_TYPE_TOP:
                     ViewHolderStopped holder3 = (ViewHolderStopped)holder;
                     holder3.end_time.setText(HourAndMinutePL(tActivity.endTime));
                     holder3.duration.setText(HourAndMinuteAndSecond(tActivity.getDuration()));

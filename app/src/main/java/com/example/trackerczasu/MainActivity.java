@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), activityList, typeList, goalList);
         viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
         tabs = findViewById(R.id.tabs);
         tabsSetup();
 
@@ -39,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         typeList.addType(new ActivityType("Cooking", R.drawable.food));
     }
 
-    private void tabsSetup() {
+    public void tabsSetup() {
+        viewPager.setAdapter(sectionsPagerAdapter);
         tabs.setupWithViewPager(viewPager);
 
         int[] tabIcons = {
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else
             activityList.addActivity(new TActivity(type.getName()));
-        viewPager.setAdapter(sectionsPagerAdapter);
         tabsSetup();
     }
 
