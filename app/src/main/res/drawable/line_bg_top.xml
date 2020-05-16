@@ -1,8 +1,13 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/colorPrimary"/>
-    <corners
-        android:topLeftRadius="15dp"
-        android:topRightRadius="15dp"/>
-    <!-- this has to be at least half of line FrameLayout's
-         width to appear completely rounded -->
-</shape>
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:top="17dp">
+    <shape>
+        <solid android:color="@color/colorPrimary"/>
+        <corners
+            android:topLeftRadius="15dp"
+            android:topRightRadius="15dp"/>
+        <!-- this has to be at least half of line FrameLayout's
+             width to appear completely rounded -->
+    </shape>
+</item>
+</layer-list>
