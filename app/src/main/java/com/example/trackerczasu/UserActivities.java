@@ -6,16 +6,16 @@ import java.util.List;
 
 public class UserActivities implements Serializable {
     public int size;
-    public List<TActivity> List;
+    public List<TActivity> list;
 
     UserActivities () {
-        List = new ArrayList<TActivity>();
+        list = new ArrayList<TActivity>();
         size = 0;
     }
 
     public void addActivity(TActivity A)
     {
-        List.add(A);
+        list.add(A);
         size++;
     }
 
@@ -27,7 +27,7 @@ public class UserActivities implements Serializable {
 
     public TActivity getCurrentActivity()
     {
-        for (TActivity A : List) {
+        for (TActivity A : list) {
         if (A.isCurrent == true)
             return A;
     }
@@ -36,7 +36,7 @@ public class UserActivities implements Serializable {
 
     public void deleteActivity(TActivity ActivityToDelete)
     {
-        if (List.remove(ActivityToDelete))
+        if (list.remove(ActivityToDelete))
             size--;
     }
 

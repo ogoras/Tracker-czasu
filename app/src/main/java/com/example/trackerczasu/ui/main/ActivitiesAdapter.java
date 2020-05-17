@@ -20,12 +20,12 @@ import com.example.trackerczasu.R;
 import com.example.trackerczasu.TActivity;
 import com.example.trackerczasu.UserActivities;
 
-import static com.example.trackerczasu.TimeFormat.HourAndMinute;
 import static com.example.trackerczasu.TimeFormat.HourAndMinuteAndSecond;
 import static com.example.trackerczasu.TimeFormat.HourAndMinutePL;
 
 
 class ActivitiesAdapter extends RecyclerView.Adapter {
+    private static final long GAP_TIME = 60;
     private static UserActivities activityList;
     private static ActivityTypeList typeList;
     private Context context;
@@ -115,15 +115,28 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
             else return VIEW_TYPE_ONLY;
         }
         if (position == 0) {
-            if (activityList.getCurrentActivity() != null)
-                return VIEW_TYPE_CURRENT;
-            return VIEW_TYPE_TOP;
-        }
-    else if (position == getItemCount() - 2) {
-                return VIEW_TYPE_BOTTOM;
+            if (activityList.getCurrentActivity() != null) {
+                if (activityList.getCurrentActivity().startTime > activityList.list.get(activityList.size - position - 2).endTime + GAP_TIME)
+                    return VIEW_TYPE_START;
+                else return VIEW_TYPE_CURRENT;
             }
-    else
-            return VIEW_TYPE_MIDDLE;
+            else if (activityList.list.get(activityList.size - position - 1).startTime > activityList.list.get(activityList.size - position - 2).endTime + GAP_TIME)
+                return VIEW_TYPE_ONLY;
+            else return VIEW_TYPE_TOP;
+        }
+        else if (position == getItemCount() - 2) {
+            if (activityList.list.get(activityList.size - position).startTime > activityList.list.get(activityList.size - position - 1).endTime + GAP_TIME)
+                return  VIEW_TYPE_ONLY;
+            else return VIEW_TYPE_BOTTOM;
+            }
+        else if (activityList.list.get(activityList.size - position - 1).startTime > activityList.list.get(activityList.size - position - 2).endTime + GAP_TIME) {
+            if (activityList.list.get(activityList.size - position).startTime > activityList.list.get(activityList.size - position - 1).endTime + GAP_TIME)
+                return VIEW_TYPE_ONLY;
+            else return VIEW_TYPE_BOTTOM;
+        }
+        else if (activityList.list.get(activityList.size - position).startTime > activityList.list.get(activityList.size - position - 1).endTime + GAP_TIME)
+            return VIEW_TYPE_TOP;
+        else return VIEW_TYPE_MIDDLE;
         }
 
     @NonNull
@@ -150,7 +163,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() != VIEW_TYPE_EMPTY) {
-            TActivity tActivity = activityList.List.get(activityList.size - 1 - position);
+            TActivity tActivity = activityList.list.get(activityList.size - 1 - position);
             ViewHolder holder1 = (ViewHolder) holder;
             //TODO: tu wypełniamy element o numerze position
             switch (holder.getItemViewType()) {
@@ -167,9 +180,6 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                 case VIEW_TYPE_BOTTOM:
                     holder1.item_line.setBackground(context.getDrawable(R.drawable.line_bg_bottom));
                     break;
-                case VIEW_TYPE_START:
-                case VIEW_TYPE_ONLY:
-                    holder1.dot.setVisibility(View.GONE);
             }
             holder1.comment.setText(tActivity.comment);
             holder1.icon.setImageResource(typeList.findType(tActivity.type).getIcon());

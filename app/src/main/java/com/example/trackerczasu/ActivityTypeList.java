@@ -27,7 +27,7 @@ public class ActivityTypeList implements Serializable { //list containing object
 
     public ActivityType findType(String name) { //checks if activity of name exists in ActivityTypes list
         for (ActivityType A : ActivityTypes) {
-            if (A.name == name)
+            if (A.name.equals(name))
                 return A;
         }
         return null;

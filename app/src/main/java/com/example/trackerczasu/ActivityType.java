@@ -46,7 +46,7 @@ public class ActivityType implements Serializable {
 
     public long getTotalDuration(UserActivities ActivityList) {
         long sum = 0;
-        for (TActivity A : ActivityList.List) {
+        for (TActivity A : ActivityList.list) {
             if (A.type == this.name)
                 sum += A.getDuration();
         }
@@ -58,7 +58,7 @@ public class ActivityType implements Serializable {
         if (endTime <= startTime)
             throw new IllegalArgumentException("End time must be bigger than start time");
         long sum = 0;
-        for (TActivity A : ActivityList.List) {
+        for (TActivity A : ActivityList.list) {
             if (A.type == this.name) {
                 if (startTime <= A.startTime) {
                     if (endTime >= A.endTime)
