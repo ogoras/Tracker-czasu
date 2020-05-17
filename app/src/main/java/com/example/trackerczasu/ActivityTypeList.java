@@ -14,8 +14,10 @@ public class ActivityTypeList implements Serializable { //list containing object
     }
 
     public void addType(ActivityType A){
-        ActivityTypes.add(A);
-        size++;
+        if ( findType(A.name) == null) {
+            ActivityTypes.add(A);
+            size++;
+        }
     }
 
     public void deleteType(ActivityType A) {
