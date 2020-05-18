@@ -1,28 +1,35 @@
 package com.example.trackerczasu;
 
 public class Goal {
-    public String name;
+    public String nameOfGoal;
     public String comment;
     public boolean isAchieved = false;
     private boolean isPeriodic;
     private long creationTime;
-    public long timeSpan;
+    public boolean refersToTwoTypes = false; /* false - the goal is the percentage of the total time tracked
+                                            ** true - the goal is for a duration of a type to be <x> times higher than duration of another type */
+   // public long timeSpan;
+    public String nameOfActivityType;
+    public String nameOfSecondActivityType;
     public ActivityType targetType; //changed to single type instead of an array (no sense)
 
     Goal()
     {
         creationTime = System.currentTimeMillis()/1000;
     }
-    Goal (String name)
+    Goal (String name, String activityTypeName)
     {
-        this.name =  name;
+        this.nameOfGoal =  name;
         creationTime = System.currentTimeMillis()/1000;
+        this.nameOfActivityType = activityTypeName;
     }
-    Goal (String name, String comment)
+    Goal (String name, String activityTypeName, String secondActivityTypeName)
     {
-        this.name =  name;
-        this.comment = comment;
+        this.nameOfGoal =  name;
         creationTime = System.currentTimeMillis()/1000;
+        this.nameOfActivityType = activityTypeName;
+        this.nameOfSecondActivityType = secondActivityTypeName;
+        this.refersToTwoTypes = true;
     }
 
     public void addType(ActivityType activityType)
@@ -35,9 +42,9 @@ public class Goal {
     }
     public void editName(String name)
     {
-        this.name = name;
+        this.nameOfGoal = name;
     }
-    public void editPeriodic(boolean isPeriodic)
+ /*   public void editPeriodic(boolean isPeriodic)
     {
         this.isPeriodic = isPeriodic;
     }
@@ -49,6 +56,7 @@ public class Goal {
     {
         this.comment = comment;
     }
+    */
     //public boolean updateIsAchieved() // update variable to reflect the truth
 
 

@@ -13,6 +13,11 @@
     <string name="item_2">Item 2</string>
     <string name="tab_text_5">Settings</string>
 
+    <string name="goals_achieved_1">Currently achieved</string>
+    <string name="goals_outof">/</string>
+    <string name="goals_achieved_2">goals</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type_icon">type icon</string>
