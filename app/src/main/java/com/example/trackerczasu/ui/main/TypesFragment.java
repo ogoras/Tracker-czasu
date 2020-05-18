@@ -26,7 +26,7 @@ public class TypesFragment extends Fragment {
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private TypesAdapter mAdapter;
     private Context context;
     private View rootView;
 
@@ -65,6 +65,14 @@ public class TypesFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         mAdapter = new TypesAdapter(typeList, context);
+
+        mAdapter.setOnItemListener(new TypesAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(context, AddTypeActivity.class);
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
         fab = rootView.findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener(){

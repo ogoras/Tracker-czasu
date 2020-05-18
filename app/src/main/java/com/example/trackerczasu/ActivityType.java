@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class ActivityType implements Serializable {
 
     public String name;
-    private int color;
+    public int color;
     public int icon;
 
     public ActivityType (String name, int icon){
