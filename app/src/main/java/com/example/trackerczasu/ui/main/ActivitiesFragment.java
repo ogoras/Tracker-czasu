@@ -1,6 +1,7 @@
 package com.example.trackerczasu.ui.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +73,17 @@ public class ActivitiesFragment extends Fragment {
         mAdapter = new ActivitiesAdapter(activityList, typeList, context);
         recyclerView.setAdapter(mAdapter);
         fab = rootView.findViewById(R.id.floatingActionButton3);
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                {
+                    Intent intent = new Intent(context, AddActivityActivity.class);
+                    intent.putExtra("ACTIVITY_LIST", activityList);
+                    intent.putExtra("TYPE_LIST", typeList);
+                    startActivity(intent);
+                }
+            }
+        });
 
         return rootView;
     }
