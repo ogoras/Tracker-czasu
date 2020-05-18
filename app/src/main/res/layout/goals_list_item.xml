@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="99dp">
+
+        <TextView
+            android:id="@+id/name_view2"
+            android:layout_width="110dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:text="goal name"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.506" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="64dp"
+            android:layout_height="0dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/start_tracking"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/ic_media_play" />
+
+        <ImageButton
+            android:id="@+id/imageButton3tick"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="156dp"
+            android:layout_marginRight="156dp"
+            android:layout_marginBottom="8dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="tick or not tick based on goal is achieved or not"
+            android:cropToPadding="true"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/green_tick" />
+
+        <ImageButton
+            android:id="@+id/imageButton3inprogress"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="156dp"
+            android:layout_marginRight="156dp"
+            android:layout_marginBottom="8dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="tick or not tick based on goal is achieved or not"
+            android:cropToPadding="true"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/in_progress_icon" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="#80E9D92E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintStart_toEndOf="@+id/name_view2"
+            app:layout_constraintTop_toTopOf="@+id/name_view2" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="36dp"
+            android:text="x % done"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+
+            android:gravity="right"
+            android:text="achieved"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton3tick"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -6,7 +6,7 @@ public class GoalList {
     public int size;
     public List<Goal> goalList;
 
-    GoalList()
+    public GoalList()
     {
         this.goalList = new ArrayList<Goal>();
         size = 0;

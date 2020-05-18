@@ -13,17 +13,17 @@ public class Goal {
     public String nameOfSecondActivityType;
     public ActivityType targetType; //changed to single type instead of an array (no sense)
 
-    Goal()
+    public Goal()
     {
         creationTime = System.currentTimeMillis()/1000;
     }
-    Goal (String name, String activityTypeName)
+    public Goal(String name, String activityTypeName)
     {
         this.nameOfGoal =  name;
         creationTime = System.currentTimeMillis()/1000;
         this.nameOfActivityType = activityTypeName;
     }
-    Goal (String name, String activityTypeName, String secondActivityTypeName)
+    public Goal (String name, String activityTypeName, String secondActivityTypeName)
     {
         this.nameOfGoal =  name;
         creationTime = System.currentTimeMillis()/1000;
