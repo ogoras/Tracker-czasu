@@ -9,7 +9,6 @@ public class ActivityType implements Serializable {
     public int color;
 
     public boolean hasColor = false;
-    private int color;
 
     public int icon;
 
@@ -26,9 +25,7 @@ public class ActivityType implements Serializable {
     }
 
     public int getColor() {
-        if (hasColor)
             return color;
-        else throw new IllegalStateException("typ nie ma koloru");
     }
 
     public String getName(){
