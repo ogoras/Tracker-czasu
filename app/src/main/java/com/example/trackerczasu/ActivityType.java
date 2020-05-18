@@ -1,5 +1,7 @@
 package com.example.trackerczasu;
 
+import android.graphics.Color;
+
 import java.io.Serializable;
 
 public class ActivityType implements Serializable {
@@ -14,6 +16,7 @@ public class ActivityType implements Serializable {
 
     public ActivityType (String name, int icon){
         this.name = name;
+        this.color = Color.parseColor("#8f61ff");   //kolor domyslny
         this.icon = icon;
 }
 

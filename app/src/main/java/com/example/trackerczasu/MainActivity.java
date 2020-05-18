@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
         tabsSetup();
 
 
-        typeList.addType(new ActivityType("Studying", R.drawable.school));
+        typeList.addType(new ActivityType("Studying",  R.drawable.school));
         typeList.addType(new ActivityType("Sleeping", R.drawable.sleep));
         typeList.addType(new ActivityType("Driving", R.drawable.car));
         typeList.addType(new ActivityType("Reading", R.drawable.book));
         typeList.addType(new ActivityType("Working", R.drawable.work));
         typeList.addType(new ActivityType("Music", R.drawable.music));
         typeList.addType(new ActivityType("Cooking", R.drawable.food));
+        
     }
 
     public void tabsSetup() {
