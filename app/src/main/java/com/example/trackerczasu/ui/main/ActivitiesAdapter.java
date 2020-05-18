@@ -20,8 +20,8 @@ import com.example.trackerczasu.R;
 import com.example.trackerczasu.TActivity;
 import com.example.trackerczasu.UserActivities;
 
-import static com.example.trackerczasu.TimeFormat.HourAndMinuteAndSecond;
-import static com.example.trackerczasu.TimeFormat.HourAndMinutePL;
+import static com.example.trackerczasu.TimeFormat.HMSDuration;
+import static com.example.trackerczasu.TimeFormat.HourAndMinute;
 
 
 class ActivitiesAdapter extends RecyclerView.Adapter {
@@ -187,7 +187,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
             holder1.tag.setText(tActivity.tag);
             switch (holder.getItemViewType()){
                 case VIEW_TYPE_START:
-                    holder1.start_time.setText(HourAndMinutePL(tActivity.startTime));
+                    holder1.start_time.setText(HourAndMinute(tActivity.startTime));
                 case VIEW_TYPE_CURRENT:
                     ViewHolderCurrent holder2 = (ViewHolderCurrent)holder;
                     holder2.timer.setBase(SystemClock.elapsedRealtime() - (System.currentTimeMillis() - tActivity.startTime*1000 ) );
@@ -204,12 +204,12 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                     break;
                 case VIEW_TYPE_ONLY:
                 case VIEW_TYPE_BOTTOM:
-                    holder1.start_time.setText(HourAndMinutePL(tActivity.startTime));
+                    holder1.start_time.setText(HourAndMinute(tActivity.startTime));
                 case VIEW_TYPE_MIDDLE:
                 case VIEW_TYPE_TOP:
                     ViewHolderStopped holder3 = (ViewHolderStopped)holder;
-                    holder3.end_time.setText(HourAndMinutePL(tActivity.endTime));
-                    holder3.duration.setText(HourAndMinuteAndSecond(tActivity.getDuration()));
+                    holder3.end_time.setText(HourAndMinute(tActivity.endTime));
+                    holder3.duration.setText(HMSDuration(tActivity.getDuration()));
             }
         }
     }

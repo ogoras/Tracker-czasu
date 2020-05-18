@@ -1,29 +1,34 @@
 package com.example.trackerczasu;
 
-import android.graphics.Color;
-
 import java.io.Serializable;
 
 public class ActivityType implements Serializable {
 
     public String name;
+
     public int color;
+
+    public boolean hasColor = false;
+    private int color;
+
     public int icon;
 
     public ActivityType (String name, int icon){
         this.name = name;
-        this.color = Color.parseColor("#8f61ff");   //kolor domyslny
         this.icon = icon;
 }
 
     public ActivityType (String name, int color, int icon) {
         this.name = name;
         this.color = color;
+        hasColor = true;
         this.icon = icon;
     }
 
     public int getColor() {
-        return color;
+        if (hasColor)
+            return color;
+        else throw new IllegalStateException("typ nie ma koloru");
     }
 
     public String getName(){
@@ -36,6 +41,7 @@ public class ActivityType implements Serializable {
 
     public void changeColor(int color) {
         this.color = color;
+        hasColor = true;
     }
 
 

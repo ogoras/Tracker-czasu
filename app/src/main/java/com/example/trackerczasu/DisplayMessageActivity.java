@@ -1,16 +1,15 @@
 package com.example.trackerczasu;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class DisplayMessageActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,4 +27,5 @@ public class DisplayMessageActivity extends AppCompatActivity {
         simpleChronometer.setBase(SystemClock.elapsedRealtime() /* - (System.currentTimeMillis() - testActivity.startTime*1000 ) */ );
         simpleChronometer.start(); // start a chronometer
     }
+
 }
