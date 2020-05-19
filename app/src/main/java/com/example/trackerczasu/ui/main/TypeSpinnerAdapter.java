@@ -19,13 +19,10 @@ class RowItem {
     int icon;
     String text;
     int color;
-    boolean hasColor;
     public RowItem(ActivityType type) {
         icon = type.icon;
         text = type.name;
-        if (type.hasColor)
-            color = type.getColor();
-        hasColor = type.hasColor;
+        color = type.getColor();
     }
 }
 
@@ -64,8 +61,7 @@ class TypeSpinnerAdapter extends ArrayAdapter<RowItem> {
         }
         imageView.setImageResource(rowItem.icon);
         nameView.setText(rowItem.text);
-        if(rowItem.hasColor)
-            nameView.setTextColor(rowItem.color);
+        nameView.setTextColor(rowItem.color);
 
         return rowview;
     }

@@ -10,20 +10,17 @@ public class ActivityType implements Serializable {
 
     public int color;
 
-    public boolean hasColor = false;
-
     public int icon;
 
     public ActivityType (String name, int icon){
         this.name = name;
-        this.color = Color.parseColor("#8f61ff");   //kolor domyslny
+        this.color = Color.parseColor("#6f347c");   //kolor domyslny
         this.icon = icon;
 }
 
     public ActivityType (String name, int color, int icon) {
         this.name = name;
         this.color = color;
-        hasColor = true;
         this.icon = icon;
     }
 
@@ -41,7 +38,6 @@ public class ActivityType implements Serializable {
 
     public void changeColor(int color) {
         this.color = color;
-        hasColor = true;
     }
 
 

@@ -185,6 +185,7 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
             holder1.icon.setImageResource(typeList.findType(tActivity.type).getIcon());
             holder1.name.setText(tActivity.type);
             holder1.tag.setText(tActivity.tag);
+            holder1.name.setTextColor(typeList.findType(tActivity.type).getColor());
             switch (holder.getItemViewType()){
                 case VIEW_TYPE_START:
                     holder1.start_time.setText(HourAndMinute(tActivity.startTime));
