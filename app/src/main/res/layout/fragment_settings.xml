@@ -97,6 +97,7 @@
             android:id="@+id/mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< Updated upstream
             android:layout_marginBottom="56dp"
             android:text="change mode"
             android:onClick="clickMode"
@@ -104,6 +105,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.486"
             app:layout_constraintStart_toStartOf="parent" />
+=======
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="@+id/editText6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText6" />
+>>>>>>> Stashed changes
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
