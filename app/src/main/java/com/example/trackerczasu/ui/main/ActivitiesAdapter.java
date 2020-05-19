@@ -22,6 +22,8 @@ import com.example.trackerczasu.UserActivities;
 
 import static com.example.trackerczasu.TimeFormat.HMSDuration;
 import static com.example.trackerczasu.TimeFormat.HourAndMinute;
+import static com.example.trackerczasu.TimeFormat.dayAndMonth;
+import static com.example.trackerczasu.TimeFormat.dayOfYear;
 
 
 class ActivitiesAdapter extends RecyclerView.Adapter {
@@ -58,6 +60,8 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
         public TextView tag;
         public TextView comment;
         public View dot;
+        public View divider_bottom, divider_top;
+        public TextView date_bottom, date_top;
 
         public ViewHolder(View v) {
             super(v);
@@ -68,6 +72,10 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
             tag = v.findViewById(R.id.tagView);
             comment = v.findViewById(R.id.commentView);
             dot = v.findViewById(R.id.dot);
+            divider_bottom = v.findViewById(R.id.divider2);
+            divider_top = v.findViewById(R.id.divider3);
+            date_bottom = v.findViewById(R.id.textView4);
+            date_top = v.findViewById(R.id.textView8);
         }
     }
 
@@ -164,6 +172,12 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() != VIEW_TYPE_EMPTY) {
             TActivity tActivity = activityList.list.get(activityList.size - 1 - position);
+            TActivity previousActivity = null;
+            if (position < activityList.size - 1)
+                    previousActivity = activityList.list.get(activityList.size - 2 - position);
+            TActivity nextActivity = null;
+            if (position > 0)
+                nextActivity = activityList.list.get(activityList.size - position);
             ViewHolder holder1 = (ViewHolder) holder;
             //TODO: tu wypełniamy element o numerze position
             switch (holder.getItemViewType()) {
@@ -186,6 +200,10 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
             holder1.name.setText(tActivity.type);
             holder1.tag.setText(tActivity.tag);
             holder1.name.setTextColor(typeList.findType(tActivity.type).getColor());
+            if (previousActivity!=null && dayOfYear(previousActivity.endTime)!=dayOfYear(tActivity.startTime)) {
+                holder1.divider_bottom.setVisibility(View.VISIBLE);
+                holder1.date_bottom.setText(dayAndMonth(tActivity.endTime));
+            }
             switch (holder.getItemViewType()){
                 case VIEW_TYPE_START:
                     holder1.start_time.setText(HourAndMinute(tActivity.startTime));
@@ -208,6 +226,14 @@ class ActivitiesAdapter extends RecyclerView.Adapter {
                     holder1.start_time.setText(HourAndMinute(tActivity.startTime));
                 case VIEW_TYPE_MIDDLE:
                 case VIEW_TYPE_TOP:
+                    if (nextActivity!=null && dayOfYear(nextActivity.startTime)!=dayOfYear(tActivity.endTime)){
+                        holder1.date_top.setText(dayAndMonth(tActivity.endTime));
+                    }
+                    if (dayOfYear(tActivity.endTime)!=dayOfYear(tActivity.startTime)){
+                        holder1.divider_top.setVisibility(View.VISIBLE);
+                        holder1.date_bottom.setText(dayAndMonth(tActivity.startTime));
+                        holder1.date_top.setText(dayAndMonth(tActivity.endTime));
+                    }
                     ViewHolderStopped holder3 = (ViewHolderStopped)holder;
                     holder3.end_time.setText(HourAndMinute(tActivity.endTime));
                     holder3.duration.setText(HMSDuration(tActivity.getDuration()));

@@ -1,6 +1,7 @@
 package com.example.trackerczasu;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class TimeFormat {
     public static String HourAndMinute(long time){
@@ -26,5 +27,17 @@ public class TimeFormat {
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE));
+    }
+    public static int dayOfYear(long time){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time*1000);
+        return calendar.get(Calendar.DAY_OF_YEAR);
+    }
+    public static String dayAndMonth(long time){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time*1000);
+        return  String.format("%02d %s", calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.getDisplayName(Calendar.MONTH,
+                        Calendar.SHORT_FORMAT, Locale.getDefault()));
     }
 }
