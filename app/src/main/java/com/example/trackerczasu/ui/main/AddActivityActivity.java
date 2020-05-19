@@ -38,4 +38,5 @@ public class AddActivityActivity extends AppCompatActivity {
         SpinnerAdapter adapter = new TypeSpinnerAdapter(this, R.layout.type_drop_view, R.id.title, rowItems);
         spinner.setAdapter(adapter);
     }
+
 }

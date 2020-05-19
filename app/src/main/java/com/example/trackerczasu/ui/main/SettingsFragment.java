@@ -1,5 +1,6 @@
 package com.example.trackerczasu.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.trackerczasu.R;
 
@@ -16,7 +18,7 @@ import com.example.trackerczasu.R;
  * create an instance of this fragment.
  */
 public class SettingsFragment extends Fragment {
-
+    Button modeDN;
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -42,6 +44,20 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+        modeDN = v.findViewById(R.id.mode);
+        modeDN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), DayNightMode.class));
+               }
+        });
+        return v;
+        //public void onMyClick(View view) { //onClick
+        //
+        //        Intent intent = new Intent(this, DayNightMode.class);
+        //        startActivity(intent);
+        //    }
     }
+
 }
