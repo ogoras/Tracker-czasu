@@ -13,22 +13,29 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.trackerczasu.ActivityType;
+import com.example.trackerczasu.ActivityTypeList;
 import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class AddTypeActivity extends AppCompatActivity {
+    private Intent intent;
+    private ActivityTypeList typeList;
     private Context context;
-    public Button saveAddType;
-    public TextView addTypeNameEditText;
-    public Button typeColorButton;
+
+
     public int color = Color.parseColor("#e9d92e");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_type);
+
+        final ActivityType type = new ActivityType("this", R.drawable.types);
+
+
         Button saveAddType = (Button) findViewById(R.id.save_type_button);
         Button typeColorButton = (Button) findViewById(R.id.pick_color2);
         final EditText addTypeNameEditText = (EditText) findViewById(R.id.add_type_name_editText);
@@ -36,7 +43,9 @@ public class AddTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 {
-                    MainActivity.typeList.addType(new ActivityType(addTypeNameEditText.getText().toString(), color ,R.drawable.types));
+                    type.name = addTypeNameEditText.getText().toString();
+                    type.color = color;
+                    MainActivity.typeList.addType(type);
                     finish();
                 }
             }
