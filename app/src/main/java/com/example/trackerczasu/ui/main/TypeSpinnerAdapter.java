@@ -27,8 +27,6 @@ class RowItem {
 }
 
 class TypeSpinnerAdapter extends ArrayAdapter<RowItem> {
-    private TextView nameView;
-    private ImageView imageView;
     LayoutInflater inflater;
 
     public TypeSpinnerAdapter(@NonNull Activity context, int resource, int textViewResourceId, @NonNull List<RowItem> objects) {
@@ -48,17 +46,17 @@ class TypeSpinnerAdapter extends ArrayAdapter<RowItem> {
     }
 
     private View rowview(View convertView , int position){
+        final TextView nameView;
+        final ImageView imageView;
 
         RowItem rowItem = getItem(position);
 
         View rowview = convertView;
-        if (rowview==null) {
-
+        if (rowview==null)
             rowview = inflater.inflate(R.layout.type_drop_view, null, false);
 
-            nameView = (TextView) rowview.findViewById(R.id.title);
-            imageView = (ImageView) rowview.findViewById(R.id.icon);
-        }
+        nameView = (TextView) rowview.findViewById(R.id.title);
+        imageView = (ImageView) rowview.findViewById(R.id.icon);
         imageView.setImageResource(rowItem.icon);
         nameView.setText(rowItem.text);
         nameView.setTextColor(rowItem.color);

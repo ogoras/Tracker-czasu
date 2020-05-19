@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         tabs = findViewById(R.id.tabs);
         tabsSetup();
 
-
         typeList.addType(new ActivityType("Studying",  R.drawable.school));
         typeList.addType(new ActivityType("Sleeping", R.drawable.sleep));
         typeList.addType(new ActivityType("Driving", R.drawable.car));
