@@ -6,30 +6,34 @@ public class Goal {
     public boolean isAchieved = false;
     private boolean isPeriodic;
     private long creationTime;
-    public boolean refersToTwoTypes = false; /* false - the goal is the percentage of the total time tracked
-                                            ** true - the goal is for a duration of a type to be <x> times higher than duration of another type */
-   // public long timeSpan;
+    public int refersToTwoTypes = 0; /* 0 - the goal is the percentage of the total time tracked
+                                     ** 1 - the goal is for a duration of a type to be <x> times higher than duration of another type */
+    public float typesRatio = 0;
+    // public long timeSpan;
     public String nameOfActivityType;
     public String nameOfSecondActivityType;
     public ActivityType targetType; //changed to single type instead of an array (no sense)
+
 
     public Goal()
     {
         creationTime = System.currentTimeMillis()/1000;
     }
-    public Goal(String name, String activityTypeName)
+    public Goal(String name, String activityTypeName, float ratio)
     {
         this.nameOfGoal =  name;
         creationTime = System.currentTimeMillis()/1000;
         this.nameOfActivityType = activityTypeName;
+        this.typesRatio = ratio;
     }
-    public Goal (String name, String activityTypeName, String secondActivityTypeName)
+    public Goal (String name, String activityTypeName, String secondActivityTypeName, float ratio)
     {
         this.nameOfGoal =  name;
         creationTime = System.currentTimeMillis()/1000;
         this.nameOfActivityType = activityTypeName;
         this.nameOfSecondActivityType = secondActivityTypeName;
-        this.refersToTwoTypes = true;
+        this.refersToTwoTypes = 1;
+        this.typesRatio = ratio;
     }
 
     public void addType(ActivityType activityType)

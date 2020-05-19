@@ -14,7 +14,7 @@ public class GoalList {
 
     public void addGoal(Goal G)
     {
-        if (findGoal(G.nameOfGoal) == null) {
+        if (findGoal(G.nameOfGoal) == null) { //name of Goal object must be unique
             goalList.add(G);
             size++;
         }

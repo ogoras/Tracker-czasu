@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private static UserActivities activityList = new UserActivities();
-    private static GoalList goalList = new GoalList();
+    public static GoalList goalList = new GoalList();
     public static ActivityTypeList typeList = new ActivityTypeList();
     private static TabLayout tabs;
     private static ViewPager viewPager;
@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         typeList.addType(new ActivityType("Working", R.drawable.work));
         typeList.addType(new ActivityType("Music", R.drawable.music));
         typeList.addType(new ActivityType("Cooking", R.drawable.food));
+
+        goalList.addGoal(new Goal("cel1z maina", "Studying", (float)0.1));
+        goalList.addGoal(new Goal("cel2z maina", "Working", (float)0.1));
     }
 
     public void tabsSetup() {
