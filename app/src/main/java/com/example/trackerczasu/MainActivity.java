@@ -155,4 +155,8 @@ public class MainActivity extends AppCompatActivity {
             activityList = retrievedActivityList;
         }
     }
+
+    public static void insertActivity(String name, long startTime, long endTime){
+        activityList.insertActivity(name,startTime,endTime);
+    }
 }
