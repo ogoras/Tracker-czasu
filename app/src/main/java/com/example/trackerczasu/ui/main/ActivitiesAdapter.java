@@ -40,6 +40,17 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_ONLY = 5;    //jedyna aktywność na liście, zakończona
     private static final int VIEW_TYPE_EMPTY = 6;   //puste pole pod spodem
 
+    private OnItemClickListener typeListener;
+
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemListener(OnItemClickListener listener){
+        typeListener = listener;
+    };
+
     ActivitiesAdapter(UserActivities activityList, ActivityTypeList typeList, Context context) {
             super();
             this.activityList = activityList;

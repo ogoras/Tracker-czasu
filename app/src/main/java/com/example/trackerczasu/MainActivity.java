@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         typeList.addType(new ActivityType("Working", R.drawable.work));
         typeList.addType(new ActivityType("Music", R.drawable.music));
         typeList.addType(new ActivityType("Cooking", R.drawable.food));
-
     }
 
     public void tabsSetup() {
