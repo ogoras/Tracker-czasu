@@ -1,12 +1,15 @@
 package com.example.trackerczasu.ui.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,9 +35,12 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
     private long startTime = System.currentTimeMillis()/1000 - 3600, endTime = System.currentTimeMillis()/1000;
     private SwitchDateTimeDialogFragment dateTimeDialogFragment;
     private String name;
+    private EditText tagView, commentView;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Add activity");
         super.onCreate(savedInstanceState);
         intent = getIntent();
         activityList = (UserActivities)intent.getSerializableExtra("ACTIVITY_LIST");
@@ -58,6 +64,8 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         startButton.setText(DDMMYYYY_HHMM_Twolines(startTime));
         endButton = findViewById(R.id.button3);
         endButton.setText(DDMMYYYY_HHMM_Twolines(endTime));
+        tagView = findViewById(R.id.editText2);
+        commentView = findViewById(R.id.editText3);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,8 +132,15 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.insertActivity(name, startTime, endTime);
-                finish();
+                try {
+                    MainActivity.insertActivity(name, startTime, endTime, tagView.getText().toString(), commentView.getText().toString());
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("SHOULD_SAVE", true);
+                    startActivity(intent);
+                }
+                catch (IllegalArgumentException e){
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
