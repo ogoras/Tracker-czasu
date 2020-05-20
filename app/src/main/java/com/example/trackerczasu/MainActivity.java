@@ -46,14 +46,6 @@ public class MainActivity extends AppCompatActivity {
         typeList.addType(new ActivityType("Music", R.drawable.music));
         typeList.addType(new ActivityType("Cooking", R.drawable.food));
 
-        goalList.addGoal(new Goal("cel1z maina", "Studying", (float)0.1));
-        goalList.addGoal(new Goal("cel2z maina", "Working", (float)0.1));
-        goalList.addGoal(new Goal("  c","Reading", (float)0.1));
-        goalList.addGoal(new Goal("cel4z maina", "Working", (float)0.1));
-        goalList.addGoal(new Goal("  d","Driving", (float)0.1));
-        goalList.addGoal(new Goal("cel6z maina", "Working", (float)0.1));
-
-
 
     }
 
