@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.main.AddActivityActivity"></activity>
         <activity android:name=".ui.main.AddTypeActivity" />
-        <activity android:name=".ui.main.DayNightActivity"></activity>
+        <activity android:name=".ui.main.DayNightActivity"/>
 
         <activity android:name=".GoalsActivity" />
         <activity

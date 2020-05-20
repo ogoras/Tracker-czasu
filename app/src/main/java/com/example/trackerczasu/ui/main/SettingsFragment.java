@@ -1,9 +1,8 @@
 package com.example.trackerczasu.ui.main;
 
-<<<<<<< Updated upstream
-=======
+
 import android.content.Context;
->>>>>>> Stashed changes
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,13 +17,10 @@ import com.example.trackerczasu.R;
 
 
 public class SettingsFragment extends Fragment {
-<<<<<<< Updated upstream
-    Button modeDN;
-=======
+
     public Button modeDN;
     private Context context;
 
->>>>>>> Stashed changes
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -56,21 +52,13 @@ public class SettingsFragment extends Fragment {
         modeDN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< Updated upstream
-                startActivity(new Intent(getActivity(), DayNightMode.class));
-               }
-=======
+
                 Intent intent = new Intent(context, DayNightActivity.class);
                 startActivity(intent);
             }
->>>>>>> Stashed changes
+
         });
         return v;
-        //public void onMyClick(View view) { //onClick
-        //
-        //        Intent intent = new Intent(this, DayNightMode.class);
-        //        startActivity(intent);
-        //    }
     }
 
 }
