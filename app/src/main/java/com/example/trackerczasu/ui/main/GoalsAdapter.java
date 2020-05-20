@@ -19,6 +19,7 @@ import com.example.trackerczasu.Goal;
 import com.example.trackerczasu.GoalList;
 import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
+import com.example.trackerczasu.TActivity;
 import com.example.trackerczasu.UserActivities;
 
 
@@ -90,10 +91,9 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
         if (currentItem.refersToTwoTypes == 0) {
 
-            long totalDurationOfAllActivities = 0;
-            for (int i=0; i<typeList.size; i++) {
-                totalDurationOfAllActivities += typeList.get(i).getTotalDuration(activityList);
-            }
+            long totalDurationOfAllActivities = typeList.getTotalDurationOfAllActivities(activityList);
+
+
 
             int percentage = (int) Math.round( ( ( (double) typeList.findType(currentItem.nameOfActivityType).getTotalDuration(activityList) ) / ( (double) currentItem.typesRatio * totalDurationOfAllActivities ) ) * 100);
 
