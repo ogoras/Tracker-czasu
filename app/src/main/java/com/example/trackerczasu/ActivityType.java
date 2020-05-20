@@ -49,7 +49,7 @@ public class ActivityType implements Serializable {
     public long getTotalDuration(UserActivities ActivityList) {
         long sum = 0;
         for (TActivity A : ActivityList.list) {
-            if (A.type == this.name)
+            if (A.type.equals(this.name))
                 sum += A.getDuration();
         }
         return sum;
