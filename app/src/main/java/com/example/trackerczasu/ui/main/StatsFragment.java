@@ -22,6 +22,7 @@ import com.example.trackerczasu.UserActivities;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -53,6 +54,7 @@ public class StatsFragment extends Fragment {
     private BarChart barChart;
     private ArrayList<PieEntry> pieDataValues; // pary uporządkowane wartości i ich etykiet
     private ArrayList<BarEntry> barDataValues;
+    private ArrayList<String> barDataLabels;
     private int [] colorsArray; //odpowiadające parom wartości z dataValues kolory, kolejność ma znaczenie, długość colorsArray musi być równa dlugości dataValues
     private Button generateBtn;
     private EditText numOfDaysTE;
@@ -87,16 +89,14 @@ public class StatsFragment extends Fragment {
         generateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createBlankDiagrams();
                 if(numOfDaysTE.getText().toString().equals(""))
                     numOfDays = 7;
                 else if(Integer.parseInt(numOfDaysTE.getText().toString()) <= 0)
                     numOfDays = 7;
                 else
                     numOfDays = Integer.parseInt(numOfDaysTE.getText().toString());
-                createPieDataValues();
+                createPieAndBarDataValues();
                 buildPieChart();
-                createBarDataValues();
                 buildBarChart();
             }
         });
@@ -116,7 +116,7 @@ public class StatsFragment extends Fragment {
         Legend pieChartLegend = pieChart.getLegend();
         pieChartLegend.setTextColor(Color.BLACK);
         pieChartLegend.setWordWrapEnabled(true);
-        //pieChartLegend.setEnabled(false);
+        pieChartLegend.setEnabled(false);
 
         PieDataSet pieDataSet = new PieDataSet(pieDataValues,"");
         pieDataSet.setSliceSpace(1f);
@@ -138,14 +138,35 @@ public class StatsFragment extends Fragment {
     }
     private void buildBarChart(){
         barChart = (BarChart) getView().findViewById(R.id.barchart);
+        barChart.setDrawValueAboveBar(true);
+        barChart.getLegend().setEnabled(false);
+        barChart.getDescription().setEnabled(false);
+
         BarDataSet barDataSet = new BarDataSet(barDataValues,"");
         barDataSet.setColors(colorsArray);
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
         BarData barData = new BarData(barDataSet);
         barChart.setData(barData);
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(barDataLabels));
+        xAxis.setPosition(XAxis.XAxisPosition.TOP);
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setGranularity(1f);
+        xAxis.setLabelCount(barDataLabels.size());
+        xAxis.setLabelRotationAngle(270);
+
+        barChart.animateY(2000);
         barChart.invalidate();
     }
-    private void createPieDataValues(){
+    private void createPieAndBarDataValues(){
+        barDataValues = new ArrayList<BarEntry>();
+        barDataLabels = new ArrayList<String>(); //dane dla BarChart
+        int iteratorForBarEntriesPositions = 0;
         pieDataValues = new ArrayList<PieEntry>();
+        //barDataValues = new ArrayList<BarEntry>();
         ArrayList<Integer> colorsArrayList = new ArrayList<>();
         int currDayOfYear = TimeFormat.dayOfYear(System.currentTimeMillis()/1000); //obecny dzien
         for(ActivityType actTp : typeList.ActivityTypes)
@@ -165,22 +186,14 @@ public class StatsFragment extends Fragment {
             if(actTimeSum == 0)
                 continue;
             pieDataValues.add(new PieEntry(actTimeSum,actTp.getName() + "\n" + TimeFormat.HourAndMinute(actTimeSum))); //suma w godzinach, niestety value wymaga int
+
+            barDataValues.add(new BarEntry(iteratorForBarEntriesPositions, actTimeSum));
+            barDataLabels.add(actTp.getName());
+            iteratorForBarEntriesPositions++;
         }
         colorsArray = new int[colorsArrayList.size()];
         for(int i=0; i<colorsArrayList.size(); i++)
             colorsArray[i] = (int)colorsArrayList.get(i);
-
-    }
-    //kazdy BarEntry to sredni czas aktywnosci w wybranym odgornie okresie
-    private void createBarDataValues(){
-        barDataValues = new ArrayList<BarEntry>();
-        barDataValues.add(new BarEntry(1,1)); //x traktujemy jako liczbe porzadkowa czyli ktore zajmie miejsce od lewej do prawej na wykresie
-        barDataValues.add(new BarEntry(2,2));
-        barDataValues.add(new BarEntry(3,0));
-        colorsArray = new int[]{Color.RED, Color.GREEN};
-    }
-    private void createBlankDiagrams(){
-
 
     }
 
