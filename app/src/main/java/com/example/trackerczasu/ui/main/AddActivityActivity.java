@@ -133,7 +133,9 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
             public void onClick(View v) {
                 try {
                     MainActivity.insertActivity(name, startTime, endTime, tagView.getText().toString(), commentView.getText().toString());
-                    finish();
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("SHOULD_SAVE", true);
+                    startActivity(intent);
                 }
                 catch (IllegalArgumentException e){
                     Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();

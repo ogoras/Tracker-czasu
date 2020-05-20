@@ -1,5 +1,6 @@
 package com.example.trackerczasu;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +25,15 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        loadData();
+        intent = getIntent();
+        if (intent.getBooleanExtra("SHOULD_SAVE", false))
+            saveData();
+        else
+            loadData();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), activityList, typeList, goalList);
