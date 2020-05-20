@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
@@ -32,6 +33,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
     private long startTime = System.currentTimeMillis()/1000 - 3600, endTime = System.currentTimeMillis()/1000;
     private SwitchDateTimeDialogFragment dateTimeDialogFragment;
     private String name;
+    private EditText tagView, commentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,8 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         startButton.setText(DDMMYYYY_HHMM_Twolines(startTime));
         endButton = findViewById(R.id.button3);
         endButton.setText(DDMMYYYY_HHMM_Twolines(endTime));
+        tagView = findViewById(R.id.editText2);
+        commentView = findViewById(R.id.editText3);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +128,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.insertActivity(name, startTime, endTime);
+                MainActivity.insertActivity(name, startTime, endTime, tagView.getText().toString(), commentView.getText().toString());
                 finish();
             }
         });

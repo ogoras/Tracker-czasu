@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static void insertActivity(String name, long startTime, long endTime){
-        activityList.insertActivity(name,startTime,endTime);
+    public static void insertActivity(String name, long startTime, long endTime, String tag, String comment){
+        activityList.insertActivity(name,startTime,endTime, tag, comment);
     }
 }

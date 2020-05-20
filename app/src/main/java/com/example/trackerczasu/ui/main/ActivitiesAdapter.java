@@ -230,7 +230,7 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
             holder1.name.setWidth((int) paint.measureText(tActivity.type));
             if (tActivity.tag != null) {
                 holder1.tag.setText(tActivity.tag);
-                holder1.tag.setBackgroundColor(tActivity.tag.hashCode() & 0xFFFFFF);
+                holder1.tag.setBackgroundColor(((tActivity.tag.hashCode()) & 0xFFFFFF) + 0xFF101010);
             }
             holder1.name.setTextColor(typeList.findType(tActivity.type).getColor());
 

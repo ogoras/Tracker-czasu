@@ -40,32 +40,42 @@ public class UserActivities implements Serializable {
             size--;
     }
 
-    public void insertActivity(String name, long startTime, long endTime){
+    public TActivity insertActivity(String name, long startTime, long endTime){
+        TActivity tActivity;
         if (endTime <= startTime) {
             throw new IllegalArgumentException("end time must be bigger than start time");
         }
+        tActivity = new TActivity(name, startTime, endTime);
         if (size == 0){
             if (endTime <= System.currentTimeMillis()/1000) {
-                addActivity(new TActivity(name, startTime, endTime));
-                return;
+                addActivity(tActivity);
+                return tActivity;
             }
             else throw new IllegalArgumentException("specified time span isn't inside a free space");
         }
         if (endTime <= list.get(0).startTime) {
-            list.add(0, new TActivity(name, startTime, endTime));
+            list.add(0, tActivity);
             size++;
-            return;
+            return tActivity;
         }
         for (int i = 0; i < (size - 1); i++){
             if (startTime >= list.get(i).endTime && endTime <= list.get(i+1).startTime) {
-                list.add(i + 1, new TActivity(name, startTime, endTime));
+                list.add(i + 1, tActivity);
                 size++;
-                return;
+                return tActivity;
             }
         }
-        if (getCurrentActivity()==null && startTime >= list.get(size-1).endTime && endTime <= System.currentTimeMillis()/1000)
-            addActivity(new TActivity(name, startTime, endTime));
+        if (getCurrentActivity()==null && startTime >= list.get(size-1).endTime && endTime <= System.currentTimeMillis()/1000) {
+            addActivity(tActivity);
+            return tActivity;
+        }
         else throw new IllegalArgumentException("specified time span isn't inside a free space");
+    }
+
+    public void insertActivity(String name, long startTime, long endTime, String tag, String comment) {
+        TActivity tActivity = insertActivity(name, startTime, endTime);
+        tActivity.editTag(tag);
+        tActivity.editComment(comment);
     }
 
     public TActivity splitActivity(TActivity ActivityToSplit, long splitTime) // zwraca pierwszą połowę, a drugą połowę przypisuje do ActivityToSplit
