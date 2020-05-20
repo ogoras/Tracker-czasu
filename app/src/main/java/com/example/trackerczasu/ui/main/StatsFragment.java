@@ -21,6 +21,7 @@ import com.example.trackerczasu.TimeFormat;
 import com.example.trackerczasu.UserActivities;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -29,11 +30,14 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.sql.Array;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Vector;
+
+import javax.xml.transform.Templates;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,7 +88,12 @@ public class StatsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 createBlankDiagrams();
-                numOfDays = Integer.parseInt(numOfDaysTE.getText().toString());
+                if(numOfDaysTE.getText().toString().equals(""))
+                    numOfDays = 7;
+                else if(Integer.parseInt(numOfDaysTE.getText().toString()) <= 0)
+                    numOfDays = 7;
+                else
+                    numOfDays = Integer.parseInt(numOfDaysTE.getText().toString());
                 createPieDataValues();
                 buildPieChart();
                 createBarDataValues();
@@ -99,18 +108,31 @@ public class StatsFragment extends Fragment {
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5,10,5,5);
         pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleRadius(0);
         pieChart.setHoleColor(Color.BLACK);
-        pieChart.setTransparentCircleRadius(61f);
+        pieChart.setTransparentCircleRadius(0);
         pieChart.setDragDecelerationFrictionCoef(0.99f);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        Legend pieChartLegend = pieChart.getLegend();
+        pieChartLegend.setTextColor(Color.BLACK);
+        pieChartLegend.setWordWrapEnabled(true);
+        //pieChartLegend.setEnabled(false);
 
         PieDataSet pieDataSet = new PieDataSet(pieDataValues,"");
         pieDataSet.setSliceSpace(1f);
-        pieDataSet.setSelectionShift(5f);
-        pieDataSet.setColors(colorsArray);
+        pieDataSet.setSelectionShift(8f);
+        pieDataSet.setValueLinePart1OffsetPercentage(40.f);
+        pieDataSet.setValueLinePart1Length(0.9f);
+        pieDataSet.setValueLinePart2Length(0.9f);
+        pieDataSet.setValueLineColor(Color.BLACK);
+        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        //pieDataSet.setColors(colorsArray);
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueTextSize(15);
-        pieData.setValueTextColor(Color.WHITE);
+        pieData.setValueTextColor(Color.BLACK);
         pieChart.setData(pieData);
         pieChart.invalidate();
     }
