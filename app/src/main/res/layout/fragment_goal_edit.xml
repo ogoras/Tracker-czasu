@@ -17,7 +17,7 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Custom goal name"
-        android:inputType="number"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
@@ -28,7 +28,7 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Exact name of activity type (eg. Studying)"
-        android:inputType="number"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -111,6 +111,6 @@
         app:layout_constraintEnd_toStartOf="@+id/saveBtn"
         app:layout_constraintStart_toEndOf="@+id/cancelBtn"
         app:layout_constraintTop_toTopOf="@+id/cancelBtn"
-        tools:visibility="invisible" />
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

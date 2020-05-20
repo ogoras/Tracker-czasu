@@ -123,7 +123,7 @@ public class GoalsFragment extends Fragment {
         add_new_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,GoalEdit.class);
+                Intent intent = new Intent(getActivity(),GoalEdit.class);
                 startActivity(intent);
 
             }
