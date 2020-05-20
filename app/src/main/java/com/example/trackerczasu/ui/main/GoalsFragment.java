@@ -72,16 +72,26 @@ public class GoalsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-
+        for (int i=0; i<goalList.size; i++)
+            System.out.println("Goal "+i+": " + goalList.goalList.get(i).nameOfGoal + " - for " + goalList.goalList.get(i).nameOfActivityType + " to be "
+                    + goalList.goalList.get(i).typesRatio*100 + "% of the time.");
         
 
 
 
 
-        long totalDurationOfAllActivities = 0;
-        for (int i=0; i<typeList.size; i++) {
-            totalDurationOfAllActivities += typeList.get(i).getTotalDuration(activityList);
-        }
+
+
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+
+        long totalDurationOfAllActivities = typeList.getTotalDurationOfAllActivities(activityList);
 
         for (int i=0; i<goalList.size; i++) {
             if (goalList.goalList.get(i).refersToTwoTypes == 0 )
@@ -97,12 +107,6 @@ public class GoalsFragment extends Fragment {
             }
         }
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         int numberOfGoals = goalList.size;
         int achieved = 0;

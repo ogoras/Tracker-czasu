@@ -27,7 +27,7 @@ public class ActivityTypeList implements Serializable { //list containing object
 
     public ActivityType findType(String name) { //checks if activity of name exists in ActivityTypes list
         for (ActivityType A : ActivityTypes) {
-            if (A.name.equals(name))
+            if (A.name.equalsIgnoreCase(name))
                 return A;
         }
         return null;
@@ -37,4 +37,13 @@ public class ActivityTypeList implements Serializable { //list containing object
         ActivityType currentItem = ActivityTypes.get(position);
         return currentItem;
     }
+
+    public long getTotalDurationOfAllActivities(UserActivities userActivities)
+    {
+        long totalTime = 0;
+        for (ActivityType A : ActivityTypes)
+            totalTime += A.getTotalDuration(userActivities);
+        return totalTime;
+    }
+
 }
