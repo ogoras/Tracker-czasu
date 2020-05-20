@@ -1,8 +1,6 @@
 package com.example.trackerczasu;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -23,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private static UserActivities activityList = new UserActivities();
     private static GoalList goalList = new GoalList();
     public static ActivityTypeList typeList = new ActivityTypeList();
-    private static TabLayout tabs;
-    private static ViewPager viewPager;
-    private static SectionsPagerAdapter sectionsPagerAdapter;
+    private TabLayout tabs;
+    private ViewPager viewPager;
+    private SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_example, menu);
-        return true;
     }
 
     public void startTracking(ActivityType type) {
