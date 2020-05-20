@@ -28,7 +28,7 @@ import static com.example.trackerczasu.TimeFormat.dayOfYear;
 
 
 public class ActivitiesAdapter extends RecyclerView.Adapter {
-    private static final long GAP_TIME = 60;
+    private static final long GAP_TIME = 120;
     private UserActivities activityList;
     private ActivityTypeList typeList;
     private final Context context;
