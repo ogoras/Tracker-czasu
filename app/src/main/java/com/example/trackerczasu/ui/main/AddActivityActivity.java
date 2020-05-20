@@ -1,5 +1,6 @@
 package com.example.trackerczasu.ui.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +36,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
     private SwitchDateTimeDialogFragment dateTimeDialogFragment;
     private String name;
     private EditText tagView, commentView;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,8 +131,13 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.insertActivity(name, startTime, endTime, tagView.getText().toString(), commentView.getText().toString());
-                finish();
+                try {
+                    MainActivity.insertActivity(name, startTime, endTime, tagView.getText().toString(), commentView.getText().toString());
+                    finish();
+                }
+                catch (IllegalArgumentException e){
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
