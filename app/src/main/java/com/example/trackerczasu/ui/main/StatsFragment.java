@@ -1,14 +1,11 @@
 package com.example.trackerczasu.ui.main;
 import android.graphics.Color;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -26,19 +23,13 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.sql.Array;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Vector;
-
-import javax.xml.transform.Templates;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -176,7 +167,7 @@ public class StatsFragment extends Fragment {
             int actTimeSum = 0;
             for(TActivity act : activityList.list)
             {
-                if(act.isCurrent == true || act.type != actTp.getName())
+                if(act.isCurrent == true || !act.type.equals(actTp.getName()))
                     continue;
                 colorsArrayList.add(actTp.getColor());
                 int actDayOfYear = TimeFormat.dayOfYear(act.startTime); //dzien aktywnosci
