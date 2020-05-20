@@ -22,7 +22,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 public class AddTypeActivity extends AppCompatActivity {
     public static int TYPE_POSITION;
     private Intent intent;
-    private Context context;
+    private Context context = this;
 
 
     public int color = Color.parseColor("#e9d92e");
@@ -34,7 +34,7 @@ public class AddTypeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_type);
 
         System.out.println(TYPE_POSITION);
-
+        setTitle("Edit Type");
 
         Button saveAddType = (Button) findViewById(R.id.save_type_button);
         Button typeColorButton = (Button) findViewById(R.id.pick_color2);
@@ -46,7 +46,9 @@ public class AddTypeActivity extends AppCompatActivity {
                     ActivityType type = MainActivity.typeList.get(TYPE_POSITION);
                     type.name = addTypeNameEditText.getText().toString();
                     type.color = color;
-                    finish();
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("SHOULD_SAVE", true);
+                    startActivity(intent);
                 }
             }
         });

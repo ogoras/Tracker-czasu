@@ -85,6 +85,9 @@ public class TypesFragment extends Fragment {
             public void onClick(View v) {
                 {
                     MainActivity.typeList.addType(new ActivityType("Enter Name", R.drawable.types));
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("SHOULD_SAVE", true);
+                    startActivity(intent);
                 }
             }
         });
