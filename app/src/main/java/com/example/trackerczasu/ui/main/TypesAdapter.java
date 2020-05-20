@@ -55,6 +55,7 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.TypesViewHol
                         if(position != RecyclerView.NO_POSITION){
                             final ActivityType currentItem = typeList.get(position);
                             listener.onItemClick(position);
+
                         }
                     }
                 }
