@@ -35,15 +35,21 @@ public class AddTypeActivity extends AppCompatActivity {
 
         System.out.println(TYPE_POSITION);
         setTitle("Edit Type");
+        final ActivityType type = MainActivity.typeList.get(TYPE_POSITION);
+
+
+        Button typeColorButton = (Button) findViewById(R.id.pick_color2);
+        typeColorButton.setBackgroundColor(type.color);
+        final EditText addTypeNameEditText = (EditText) findViewById(R.id.add_type_name_editText);
+        addTypeNameEditText.setText(type.name);
 
         Button saveAddType = (Button) findViewById(R.id.save_type_button);
-        Button typeColorButton = (Button) findViewById(R.id.pick_color2);
-        final EditText addTypeNameEditText = (EditText) findViewById(R.id.add_type_name_editText);
         saveAddType.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 {
-                    ActivityType type = MainActivity.typeList.get(TYPE_POSITION);
+
+
                     type.name = addTypeNameEditText.getText().toString();
                     type.color = color;
                     Intent intent = new Intent(context, MainActivity.class);
