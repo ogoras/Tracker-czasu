@@ -1,10 +1,12 @@
 package com.example.trackerczasu.ui.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -37,7 +39,10 @@ public class GoalsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private Context context;
 
+
     public TextView x_field;
+    public TextView y_field;
+    public Button add_new_Button;
 
 
     public GoalsFragment() {
@@ -99,8 +104,32 @@ public class GoalsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        int numberOfGoals = goalList.size;
+        int achieved = 0;
+        for (int i=0; i<goalList.size; i++)
+            if (goalList.goalList.get(i).isAchieved == true)
+                achieved++;
 
         rootView = inflater.inflate(R.layout.fragment_goals, container, false);
+        //rootView.setOnLongClickListener(); //tu ma być możliwość usunięcia
+
+        add_new_Button = (Button) rootView.findViewById(R.id.addNewBtn);
+        x_field = (TextView) rootView.findViewById(R.id.textView2);
+        y_field = (TextView) rootView.findViewById(R.id.textView4);
+
+        y_field.setText(goalList.goalList.size() + ""); //numberOfGoals (y)
+        x_field.setText(achieved + "");
+
+        add_new_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,GoalEdit.class);
+                startActivity(intent);
+
+            }
+        });
+
+
         recyclerView = (RecyclerView) rootView.findViewById(R.id.GoalsRecyclerView);
         recyclerView.setHasFixedSize(true);
 
