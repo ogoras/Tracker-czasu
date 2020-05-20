@@ -72,6 +72,8 @@ public class TypesFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(context, AddTypeActivity.class);
+                AddTypeActivity.TYPE_POSITION = position;
+                System.out.println(position);
                 context.startActivity(intent);
             }
         });
@@ -82,9 +84,10 @@ public class TypesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 {
-
-                    Intent intent = new Intent(context, AddTypeActivity.class);
-                    context.startActivity(intent);
+                    MainActivity.typeList.addType(new ActivityType("Enter Name", R.drawable.types));
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("SHOULD_SAVE", true);
+                    startActivity(intent);
                 }
             }
         });

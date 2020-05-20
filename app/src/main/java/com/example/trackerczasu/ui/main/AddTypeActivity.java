@@ -20,9 +20,9 @@ import com.example.trackerczasu.R;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class AddTypeActivity extends AppCompatActivity {
+    public static int TYPE_POSITION;
     private Intent intent;
-    private ActivityTypeList typeList;
-    private Context context;
+    private Context context = this;
 
 
     public int color = Color.parseColor("#e9d92e");
@@ -33,8 +33,8 @@ public class AddTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_type);
 
-        final ActivityType type = new ActivityType("this", R.drawable.types);
-
+        System.out.println(TYPE_POSITION);
+        setTitle("Edit Type");
 
         Button saveAddType = (Button) findViewById(R.id.save_type_button);
         Button typeColorButton = (Button) findViewById(R.id.pick_color2);
@@ -43,10 +43,12 @@ public class AddTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 {
+                    ActivityType type = MainActivity.typeList.get(TYPE_POSITION);
                     type.name = addTypeNameEditText.getText().toString();
                     type.color = color;
-                    MainActivity.typeList.addType(type);
-                    finish();
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("SHOULD_SAVE", true);
+                    startActivity(intent);
                 }
             }
         });
