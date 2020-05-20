@@ -1,6 +1,7 @@
 package com.example.trackerczasu.ui.main;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,6 +83,18 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
             divider_top = v.findViewById(R.id.divider3);
             date_bottom = v.findViewById(R.id.textView4);
             date_top = v.findViewById(R.id.textView8);
+        }
+
+        public void clear(){
+            start_time.setText("");
+            item_line.setBackgroundResource(0);
+            name.setText("");
+            tag.setText("");
+            comment.setText("");
+            divider_top.setVisibility(View.INVISIBLE);
+            divider_bottom.setVisibility(View.INVISIBLE);
+            date_bottom.setText("");
+            date_top.setText("");
         }
     }
 
@@ -180,7 +193,6 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         if (holder.getItemViewType() != VIEW_TYPE_EMPTY) {
-            holder.setIsRecyclable(false);
             final TActivity tActivity = activityList.list.get(activityList.size - 1 - position);
             final TActivity previousActivity;
             if (position < activityList.size - 1)
@@ -193,6 +205,7 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
             else
                 nextActivity = null;
             final ViewHolder holder1 = (ViewHolder) holder;
+            holder1.clear();
 
             switch (holder.getItemViewType()) {
                 case VIEW_TYPE_CURRENT:
@@ -213,6 +226,8 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
             holder1.comment.setText(tActivity.comment);
             holder1.icon.setImageResource(typeList.findType(tActivity.type).getIcon());
             holder1.name.setText(tActivity.type);
+            Paint paint = holder1.name.getPaint();
+            holder1.name.setWidth((int) paint.measureText(tActivity.type));
             holder1.tag.setText(tActivity.tag);
             holder1.name.setTextColor(typeList.findType(tActivity.type).getColor());
 
@@ -250,6 +265,9 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
                     else if (nextActivity!=null && dayOfYear(nextActivity.startTime)!=dayOfYear(tActivity.endTime)){
                         holder1.date_top.setText(dayAndMonth(tActivity.endTime));
                     }
+                    else if (position == 0 && activityList.getCurrentActivity()==null &&
+                            dayOfYear(tActivity.endTime)!=dayOfYear(System.currentTimeMillis()/1000))
+                        holder1.date_top.setText(dayAndMonth(tActivity.endTime));
                     final ViewHolderStopped holder3 = (ViewHolderStopped)holder;
                     holder3.end_time.setText(HourAndMinute(tActivity.endTime));
                     holder3.duration.setText(HMSDuration(tActivity.getDuration()));
