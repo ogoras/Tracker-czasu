@@ -7,11 +7,15 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackerczasu.Goal;
@@ -25,6 +29,7 @@ public class GoalEdit extends AppCompatActivity {
     EditText exactNameOfActivityType;
     EditText goalName;
     EditText percentageText;
+    TextView goalDescription;
     private Context context = this;
 
 
@@ -35,6 +40,32 @@ public class GoalEdit extends AppCompatActivity {
         exactNameOfActivityType = (EditText) findViewById(R.id.exactNameEditText);
         goalName = (EditText) findViewById(R.id.goalNameEditText2);
         percentageText = (EditText) findViewById(R.id.percentOfTimeEditText);
+        goalDescription = (TextView) findViewById(R.id.goalDescriptionTextView13);
+
+
+        exactNameOfActivityType.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {          }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                    goalDescription.setText("The goal is for " + exactNameOfActivityType.getText().toString() + " to be " + percentageText.getText().toString()+"% of total time tracked.");
+            }
+        });
+
+        percentageText.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {          }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                goalDescription.setText("The goal is for " + exactNameOfActivityType.getText().toString() + " to be " + percentageText.getText().toString()+"% of total time tracked.");
+            }
+        });
 
 
 
