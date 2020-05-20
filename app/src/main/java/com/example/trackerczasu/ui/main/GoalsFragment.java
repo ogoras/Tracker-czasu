@@ -70,10 +70,8 @@ public class GoalsFragment extends Fragment {
 
         
 
-        //goalList.addGoal(new Goal("cel1zgoalsfragment","Working", (float)0.1));
-        goalList.addGoal(new Goal("cel2zgoalsfragment","Studying", (float)0.1));
-        goalList.addGoal(new Goal("cel3 from goalsfragment","Driving", (float)0.1));
-       // goalList.addGoal(new Goal());
+
+
 
         long totalDurationOfAllActivities = 0;
         for (int i=0; i<typeList.size; i++) {
@@ -109,7 +107,7 @@ public class GoalsFragment extends Fragment {
         layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new GoalsAdapter(typeList,goalList, context);
+        mAdapter = new GoalsAdapter(activityList,typeList,goalList, context);
         recyclerView.setAdapter(mAdapter);
 
         return rootView;

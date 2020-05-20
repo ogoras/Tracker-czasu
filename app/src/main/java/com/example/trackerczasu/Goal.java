@@ -1,7 +1,7 @@
 package com.example.trackerczasu;
 
 public class Goal {
-    public String nameOfGoal;
+    public String nameOfGoal = " ";
     public String comment;
     public boolean isAchieved = false;
     private boolean isPeriodic;
@@ -19,6 +19,12 @@ public class Goal {
     {
         creationTime = System.currentTimeMillis()/1000;
     }
+   /* public Goal(String activityTypeName, float ratio) //for some reason this breaks the recyclerview
+    {
+        creationTime = System.currentTimeMillis()/1000;
+        this.nameOfActivityType = activityTypeName;
+        this.typesRatio = ratio;
+    } */
     public Goal(String name, String activityTypeName, float ratio)
     {
         this.nameOfGoal =  name;
