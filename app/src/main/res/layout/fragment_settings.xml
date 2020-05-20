@@ -12,8 +12,12 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="379dp"
-            android:layout_height="242dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:text="@string/this_application_is_designed_to_track_activity_throughout_the_day_using_it_you_can_track_what_percentage_of_the_time_from_a_day_week_month_etc_you_have_in_any_activity_convenient_and_easy_interface_allows_any_user_to_use_this_application"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +26,13 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="380dp"
-            android:layout_height="94dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:text="@string/if_you_have_any_problems_using_this_application_please_write_to_this_email_or_github"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,9 +73,13 @@
 
         <TextView
             android:id="@+id/textView13"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:text="@string/support_trackertime_tt_com"
             android:textColor="#91908D"
@@ -79,9 +92,13 @@
 
         <TextView
             android:id="@+id/textView14"
-            android:layout_width="378dp"
-            android:layout_height="56dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:text="@string/https_github_com_ogoras_tracker_czasu_git"
             android:textColor="#91908D"
             android:textSize="24sp"
