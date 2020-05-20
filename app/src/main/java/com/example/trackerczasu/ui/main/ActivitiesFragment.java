@@ -65,7 +65,17 @@ public class ActivitiesFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerView.Adapter mAdapter = new ActivitiesAdapter(activityList, typeList, context);
+        ActivitiesAdapter mAdapter = new ActivitiesAdapter(activityList, typeList, context);
+        mAdapter.setOnItemListener(new ActivitiesAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(context, EditActivityActivity.class);
+                intent.putExtra("ACTIVITY_LIST", activityList);
+                intent.putExtra("TYPE_LIST", typeList);
+                intent.putExtra("POSITION", activityList.size - position - 1);
+                context.startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
         FloatingActionButton fab = rootView.findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener(){

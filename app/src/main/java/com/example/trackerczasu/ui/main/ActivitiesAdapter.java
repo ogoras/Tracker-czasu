@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trackerczasu.ActivityType;
 import com.example.trackerczasu.ActivityTypeList;
 import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
@@ -29,8 +30,8 @@ import static com.example.trackerczasu.TimeFormat.dayOfYear;
 
 public class ActivitiesAdapter extends RecyclerView.Adapter {
     private static final long GAP_TIME = 120;
-    private UserActivities activityList;
-    private ActivityTypeList typeList;
+    private static UserActivities activityList;
+    private static ActivityTypeList typeList;
     private final Context context;
     private static final int VIEW_TYPE_TOP = 0; //aktywność na górze, zakończona
     private static final int VIEW_TYPE_MIDDLE = 1;  //aktywność w środku
@@ -109,19 +110,27 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public static class ViewHolderStopped extends ViewHolder implements View.OnClickListener {
+    public static class ViewHolderStopped extends ViewHolder {
         TextView end_time;
         TextView duration;
 
-        ViewHolderStopped(View v) {
+        ViewHolderStopped(View v, final OnItemClickListener listener) {
             super(v);
             end_time = v.findViewById(R.id.endView);
             duration = v.findViewById(R.id.durationView);
-        }
+            v.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View itemView){
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            final ActivityType currentItem = typeList.get(position);
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
 
-        @Override
-        public void onClick(View v) {
-            //tutaj co się stanie po kliknięciu w aktywność
+            });
         }
     }
 
@@ -198,7 +207,7 @@ public class ActivitiesAdapter extends RecyclerView.Adapter {
         }
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_view, parent, false);
-        return new ViewHolderStopped(v);
+        return new ViewHolderStopped(v, typeListener);
     }
 
     @Override

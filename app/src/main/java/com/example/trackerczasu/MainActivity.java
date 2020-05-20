@@ -153,4 +153,17 @@ public class MainActivity extends AppCompatActivity {
     public static void insertActivity(String name, long startTime, long endTime, String tag, String comment){
         activityList.insertActivity(name,startTime,endTime, tag, comment);
     }
+
+    public static void insertActivity(TActivity tActivity) {
+        activityList.insertActivity(tActivity.type, tActivity.startTime, tActivity.endTime, tActivity.tag, tActivity.comment);
+    }
+
+    public static void deleteActivity(TActivity tActivity) {
+        TActivity tActivity1 = null;
+        for ( TActivity A : activityList.list){
+            if (A.startTime == tActivity.startTime)
+                tActivity1 = A;
+        }
+        activityList.deleteActivity(tActivity1);
+    }
 }
