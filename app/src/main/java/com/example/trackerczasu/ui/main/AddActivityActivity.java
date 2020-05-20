@@ -40,6 +40,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Add activity");
         super.onCreate(savedInstanceState);
         intent = getIntent();
         activityList = (UserActivities)intent.getSerializableExtra("ACTIVITY_LIST");

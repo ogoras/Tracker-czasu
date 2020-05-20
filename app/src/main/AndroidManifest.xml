@@ -13,7 +13,13 @@
         <activity android:name=".ui.main.AddTypeActivity"></activity>
         <activity android:name=".ui.main.GoalEdit"></activity>
 
-        <activity android:name=".ui.main.AddActivityActivity"></activity>
+        <activity android:name=".ui.main.AddActivityActivity"
+            android:label="Add activity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
 
         <activity android:name=".GoalsActivity" />
