@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,22 +23,45 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.TypesViewHol
     private static ActivityTypeList typeList;
     private Context context;
 
-    public static class TypesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        // each data item is just a string in this case
+    private OnItemClickListener typeListener;
+
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemListener(OnItemClickListener listener){
+        typeListener = listener;
+    };
+
+    public static class TypesViewHolder extends RecyclerView.ViewHolder  {
+
         public ImageButton track_button;
         public TextView name;
         public ImageView typeIcon;
-        public TypesViewHolder(View v) {
+        public Button typeColor;
+        public TypesViewHolder(View v, final OnItemClickListener listener) {
             super(v);
             track_button = v.findViewById(R.id.imageButton);
             name = v.findViewById(R.id.name_view2);
             typeIcon = v.findViewById(R.id.imageView);
+            typeColor = v.findViewById(R.id.pick_color2);
+
+            v.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View itemView){
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            final ActivityType currentItem = typeList.get(position);
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-        //tutaj co się stanie po kliknięciu w element listy
-        }
     }
 
     public TypesAdapter(ActivityTypeList typeList, Context context) {
@@ -49,7 +74,7 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.TypesViewHol
     @Override
     public TypesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.type_row_view, parent, false);
-        TypesViewHolder tvh = new TypesViewHolder(v);
+        TypesViewHolder tvh = new TypesViewHolder(v, typeListener);
         return tvh;
     }
 
@@ -58,6 +83,7 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.TypesViewHol
         final ActivityType currentItem = typeList.get(position);
 
         holder.name.setText(currentItem.getName());
+        holder.name.setTextColor(currentItem.getColor());
         holder.typeIcon.setImageResource(currentItem.getIcon());
         holder.track_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -66,8 +92,9 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.TypesViewHol
         });
     }
 
+
     @Override
     public int getItemCount() {
-        return typeList.size;   //do zmiany na typeList.size
+        return typeList.size;
     }
 }

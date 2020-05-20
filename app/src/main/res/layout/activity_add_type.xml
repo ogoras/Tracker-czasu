@@ -7,13 +7,28 @@
     tools:context=".ui.main.AddTypeActivity">
 
     <Button
+        android:id="@+id/pick_color2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:backgroundTintMode="src_atop"
+        android:onClick="pickColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+    <Button
         android:id="@+id/save_type_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 

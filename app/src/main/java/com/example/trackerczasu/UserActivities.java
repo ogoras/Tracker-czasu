@@ -56,7 +56,7 @@ public class UserActivities implements Serializable {
             size++;
             return;
         }
-        for (int i = 0; i<size-1; i++){
+        for (int i = 0; i < (size - 1); i++){
             if (startTime >= list.get(i).endTime && endTime <= list.get(i+1).startTime) {
                 list.add(i + 1, new TActivity(name, startTime, endTime));
                 size++;

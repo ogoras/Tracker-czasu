@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trackerczasu.ActivityType;
 import com.example.trackerczasu.ActivityTypeList;
+import com.example.trackerczasu.MainActivity;
 import com.example.trackerczasu.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,7 +28,7 @@ public class TypesFragment extends Fragment {
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private TypesAdapter mAdapter;
     private Context context;
     private View rootView;
 
@@ -65,17 +67,30 @@ public class TypesFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         mAdapter = new TypesAdapter(typeList, context);
+
+        mAdapter.setOnItemListener(new TypesAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(context, AddTypeActivity.class);
+                context.startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
+
         fab = rootView.findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 {
+
                     Intent intent = new Intent(context, AddTypeActivity.class);
-                    startActivity(intent);
+                    context.startActivity(intent);
                 }
             }
         });
+
         return rootView;
     }
+
+
 }

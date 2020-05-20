@@ -1,8 +1,6 @@
 package com.example.trackerczasu;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -23,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private static UserActivities activityList = new UserActivities();
     public static GoalList goalList = new GoalList();
     public static ActivityTypeList typeList = new ActivityTypeList();
-    private static TabLayout tabs;
-    private static ViewPager viewPager;
-    private static SectionsPagerAdapter sectionsPagerAdapter;
+    private TabLayout tabs;
+    private ViewPager viewPager;
+    private SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +35,13 @@ public class MainActivity extends AppCompatActivity {
         tabs = findViewById(R.id.tabs);
         tabsSetup();
 
-
-        typeList.addType(new ActivityType("Studying", R.drawable.school));
+        typeList.addType(new ActivityType("Studying",  R.drawable.school));
         typeList.addType(new ActivityType("Sleeping", R.drawable.sleep));
         typeList.addType(new ActivityType("Driving", R.drawable.car));
         typeList.addType(new ActivityType("Reading", R.drawable.book));
         typeList.addType(new ActivityType("Working", R.drawable.work));
         typeList.addType(new ActivityType("Music", R.drawable.music));
         typeList.addType(new ActivityType("Cooking", R.drawable.food));
-
 
     }
 
@@ -75,13 +71,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_example, menu);
-        return true;
-    }
-
     public void startTracking(ActivityType type) {
         TActivity currentActivity = activityList.getCurrentActivity();
         if(currentActivity!=null){
@@ -98,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
         }
         tabsSetup();
     }
+
+
 
     public void saveData()
     {
@@ -154,5 +145,9 @@ public class MainActivity extends AppCompatActivity {
             retrievedActivityList = (UserActivities) deserialized.get(1);
             activityList = retrievedActivityList;
         }
+    }
+
+    public static void insertActivity(String name, long startTime, long endTime){
+        activityList.insertActivity(name,startTime,endTime);
     }
 }
