@@ -97,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
         tabsSetup();
     }
 
-
-
     public void saveData()
     {
         ArrayList<Object> typeListData = new ArrayList<Object>();
