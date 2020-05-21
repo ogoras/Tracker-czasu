@@ -1,17 +1,17 @@
 package com.example.trackerczasu;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.trackerczasu.ui.main.SectionsPagerAdapter;
+import com.example.trackerczasu.ui.main.SettingsFragment;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,102 +21,91 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import yuku.ambilwarna.AmbilWarnaDialog;
-
-
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.example.trackerczasu.MESSAGE";
-    public static UserActivities activityList = new UserActivities();
+
+    private static UserActivities activityList = new UserActivities();
+    public static GoalList goalList = new GoalList();
     public static ActivityTypeList typeList = new ActivityTypeList();
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private int color = Color.parseColor("#e9d92e");
-    //Button goalsButton = (Button)findViewById(R.id.goalsButton); // when clicked goes to new Activity window and shows active goals and user can make new
+    private TabLayout tabs;
+    private ViewPager viewPager;
+    private SectionsPagerAdapter sectionsPagerAdapter;
+    private Intent intent;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
-
-        loadData();
-
+    protected void onCreate(Bundle savedInstanceState) {
+        intent = getIntent();
+        if (intent.getBooleanExtra("SHOULD_SAVE", false))
+            saveData();
+        else
+            loadData();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        recyclerView = (RecyclerView) findViewById(R.id.typesView);
-        recyclerView.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        mAdapter = new MyAdapter(typeList, this);
-        recyclerView.setAdapter(mAdapter);
+        SettingsFragment fragment = new SettingsFragment();
 
 
+        sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), activityList, typeList, goalList);
+        viewPager = findViewById(R.id.view_pager);
+        tabs = findViewById(R.id.tabs);
+        tabsSetup();
+
+
+        typeList.addType(new ActivityType("Studying",  R.drawable.school));
+        typeList.addType(new ActivityType("Sleeping", R.drawable.sleep));
+        typeList.addType(new ActivityType("Driving", R.drawable.car));
+        typeList.addType(new ActivityType("Reading", R.drawable.book));
+        typeList.addType(new ActivityType("Working", R.drawable.work));
+        typeList.addType(new ActivityType("Music", R.drawable.music));
+        typeList.addType(new ActivityType("Cooking", R.drawable.food));
     }
-    public static TActivity testActivity;
 
-    /** Called when the user taps the Send button */
-    public void sendMessage(View view) {
-        Button button = (Button) findViewById(R.id.button);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString(); //name of activity
-        ActivityType A = new ActivityType(message, color);
+    public void tabsSetup() {
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs.setupWithViewPager(viewPager);
 
-        if(!message.equals("")){
-            typeList.addType(A);
-            mAdapter = new MyAdapter(typeList, this);
-            recyclerView.setAdapter(mAdapter);
+        int[] tabIcons = {
+                R.drawable.activities,
+                R.drawable.types,
+                R.drawable.goals,
+                R.drawable.stats,
+                R.drawable.settings
+        };
+
+        final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4, R.string.tab_text_5};
+
+        for(int i=0; i<tabs.getTabCount(); i++){
+            if(tabs.getTabAt(i) != null){
+                try {                                       //czasami są problemy z załadowaniem ikon
+                    tabs.getTabAt(i).setIcon(tabIcons[i]);
+                }
+                catch (Exception E) {
+                    tabs.getTabAt(i).setText(TAB_TITLES[i]);
+                }
+            }
         }
-
-        saveData();
-        editText.setText("");
-
     }
 
-    // to enable change of Activity
     public void startTracking(ActivityType type) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        String message = type.name;
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
-
-    public void delType(ActivityType type) {
-        typeList.deleteType(type);
-        mAdapter = new MyAdapter(typeList, this);
-        recyclerView.setAdapter(mAdapter);
-
-        saveData(); //after the deletion this state should be saved (not required if user clicked cancelled that though)
-    }
-
-    public void pickColor(View view) {
-        final Button button = (Button) findViewById(R.id.pick_color);
-        int color = Color.parseColor("#79aaff");
-        AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, color, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                button.setBackgroundColor(color);
-                setColor(color);
+        TActivity currentActivity = activityList.getCurrentActivity();
+        if(currentActivity!=null){
+            if (!currentActivity.type.equals(type.getName())) {
+                currentActivity.isCurrent = false;
+                currentActivity.endTime = System.currentTimeMillis() / 1000;
+                activityList.addActivity(new TActivity(type.getName()));
+                saveData();
             }
-
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-                // cancel was selected by the user
-            }
-        });
-
-        dialog.show();
-    }
-
-    public void setColor(int color) {
-        this.color = color;
+        }
+        else {
+            activityList.addActivity(new TActivity(type.getName()));
+            saveData();
+        }
+        tabsSetup();
     }
 
     public void saveData()
     {
         ArrayList<Object> typeListData = new ArrayList<Object>();
         typeListData.add(typeList);
-
+        typeListData.add(activityList);
         try {
             File directory = getFilesDir();
             File file = new File(directory, "data.ser");
@@ -126,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             out.writeObject(typeListData);
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved.");
+            System.out.println("State saved. (Serialized data is saved)");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -158,10 +147,31 @@ public class MainActivity extends AppCompatActivity {
             se.printStackTrace();
             return;
         }
+
         ActivityTypeList retrievedActivityTypeList = (ActivityTypeList) deserialized.get(0);
         typeList = retrievedActivityTypeList;
 
+        UserActivities retrievedActivityList;
+        if (deserialized.size()>=2) {
+            retrievedActivityList = (UserActivities) deserialized.get(1);
+            activityList = retrievedActivityList;
+        }
     }
 
-}
+    public static void insertActivity(String name, long startTime, long endTime, String tag, String comment){
+        activityList.insertActivity(name,startTime,endTime, tag, comment);
+    }
 
+    public static void insertActivity(TActivity tActivity) {
+        activityList.insertActivity(tActivity.type, tActivity.startTime, tActivity.endTime, tActivity.tag, tActivity.comment);
+    }
+
+    public static void deleteActivity(TActivity tActivity) {
+        TActivity tActivity1 = null;
+        for ( TActivity A : activityList.list){
+            if (A.startTime == tActivity.startTime)
+                tActivity1 = A;
+        }
+        activityList.deleteActivity(tActivity1);
+    }
+}

@@ -1,28 +1,39 @@
 package com.example.trackerczasu;
 
 import android.graphics.Color;
-import android.view.animation.AccelerateInterpolator;
 
 import java.io.Serializable;
 
 public class ActivityType implements Serializable {
-    private int id;
 
     public String name;
-    private int color;
 
-    ActivityType (String name){
+    public int color;
+
+    public int icon;
+
+    public ActivityType (String name, int icon){
         this.name = name;
-        this.color = Color.parseColor("#8f61ff");   //kolor domyslny
+        this.color = Color.parseColor("#6f347c");   //kolor domyslny
+        this.icon = icon;
 }
 
-    ActivityType (String name, int color) {
+    public ActivityType (String name, int color, int icon) {
         this.name = name;
         this.color = color;
+        this.icon = icon;
     }
 
     public int getColor() {
-        return color;
+            return color;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getIcon(){
+        return icon;
     }
 
     public void changeColor(int color) {
@@ -37,8 +48,8 @@ public class ActivityType implements Serializable {
 
     public long getTotalDuration(UserActivities ActivityList) {
         long sum = 0;
-        for (TActivity A : ActivityList.List) {
-            if (A.type == this.name)
+        for (TActivity A : ActivityList.list) {
+            if (A.type.equals(this.name))
                 sum += A.getDuration();
         }
         return sum;
@@ -49,8 +60,8 @@ public class ActivityType implements Serializable {
         if (endTime <= startTime)
             throw new IllegalArgumentException("End time must be bigger than start time");
         long sum = 0;
-        for (TActivity A : ActivityList.List) {
-            if (A.type == this.name) {
+        for (TActivity A : ActivityList.list) {
+            if (A.type.equals(this.name)) {
                 if (startTime <= A.startTime) {
                     if (endTime >= A.endTime)
                         sum += A.getDuration();

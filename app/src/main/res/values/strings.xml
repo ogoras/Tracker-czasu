@@ -4,4 +4,31 @@
     <string name="button_send">Add</string>
     <string name="button_track">Track</string>
     <string name="button_delete">Delete</string>
+    <string name="title_activity_main">Tracker czasu</string>
+    <string name="tab_text_1">Activities</string>
+    <string name="tab_text_2">Types</string>
+    <string name="tab_text_3">Goals</string>
+    <string name="tab_text_4">Stats</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="tab_text_5">Settings</string>
+
+    <string name="goals_achieved_1">Currently achieved</string>
+    <string name="goals_outof">/</string>
+    <string name="goals_achieved_2">goals</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type_icon">type icon</string>
+    <string name="start_tracking">start tracking</string>
+    <string name="hi_my_dear_user">Hi, my dear user!</string>
+    <string name="this_application_is_designed_to_track_activity_throughout_the_day_using_it_you_can_track_what_percentage_of_the_time_from_a_day_week_month_etc_you_have_any_activity_convenient_and_easy_interface_allows_any_user_to_use_this_application">This application is designed to track activity throughout the day. Using it, you can track what percentage of the time from a day / week / month, etc. you have any activity. Convenient and easy interface allows any user to use this application.</string>
+    <string name="if_you_have_any_problems_using_this_application_please_write_to_this_email">If you have any problems using this application, please write to this email</string>
+    <string name="support_trackertime_tt_com">support.trackertime@tt.com</string>
+    <string name="application_version_1_0_last_updated_05_15_2020">Application Version 1.0 (last updated 05/15/2020)</string>
+    <string name="todo">TODO</string>
+    <string name="if_you_have_any_problems_using_this_application_please_write_to_this_email_or_github">If you have any problems using this application, please write to this email or GitHub</string>
+    <string name="https_github_com_ogoras_tracker_czasu_git">https://github.com/ogoras/Tracker-czasu.git</string>
+    <string name="this_application_is_designed_to_track_activity_throughout_the_day_using_it_you_can_track_what_percentage_of_the_time_from_a_day_week_month_etc_you_have_in_any_activity_convenient_and_easy_interface_allows_any_user_to_use_this_application">This application is designed to track activity throughout the day. Using it, you can track what percentage of the time from a day / week / month, etc. you have in any activity. Convenient and easy interface allows any user to use this application.</string>
 </resources>

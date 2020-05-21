@@ -2,7 +2,7 @@ package com.example.trackerczasu;
 
 import java.io.Serializable;
 
-public class TActivity implements Serializable {
+public class TActivity implements Serializable, Cloneable {
     private int id;
 
     public boolean isCurrent;
@@ -30,7 +30,7 @@ public class TActivity implements Serializable {
     }
 
     public boolean editType(ActivityTypeList List, String name){
-        if(List.findType(name)) {
+        if(List.findType(name)!=null) {
             type = name;
             return true;
         }
@@ -49,5 +49,15 @@ public class TActivity implements Serializable {
     public void editTime(long start, long end){
         startTime = start;
         endTime= end;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        TActivity t = new TActivity(type, startTime, endTime);
+        t.isCurrent = isCurrent;
+        t.type = type;
+        t.tag = tag;
+        t.comment = comment;
+        return t;
     }
 }

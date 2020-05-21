@@ -6,7 +6,7 @@ public class GoalList {
     public int size;
     public List<Goal> goalList;
 
-    GoalList()
+    public GoalList()
     {
         this.goalList = new ArrayList<Goal>();
         size = 0;
@@ -14,20 +14,22 @@ public class GoalList {
 
     public void addGoal(Goal G)
     {
-        goalList.add(G);
-        size++;
+        if (findGoal(G.nameOfGoal) == null) { //name of Goal object must be unique
+            goalList.add(G);
+            size++;
+        }
     }
     public void deleteGoal(Goal G)
     {
         if(goalList.remove(G))
             size--;
     }
-    public boolean findType(String name)
+    public Goal findGoal(String name)
     {
         for (Goal G : goalList) {
-            if (G.name == name)
-                return true;
+            if (G.nameOfGoal == name)
+                return G;
         }
-        return false;
+        return null;
     }
 }
