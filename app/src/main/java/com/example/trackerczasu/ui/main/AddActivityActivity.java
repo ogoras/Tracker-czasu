@@ -205,4 +205,5 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 }

@@ -50,7 +50,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 3:
                 return StatsFragment.newInstance(activityList, typeList, goalList);
             case 4:
-                return SettingsFragment.newInstance();
+                return SettingsFragment.newInstance(mContext);
         }
         return PlaceholderFragment.newInstance(position + 1);
     }
