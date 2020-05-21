@@ -20,6 +20,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -27,6 +28,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -124,22 +126,28 @@ public class StatsFragment extends Fragment {
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueTextSize(15);
         pieData.setValueTextColor(Color.BLACK);
+        pieData.setValueFormatter(new PercentFormatter(pieChart));
         pieChart.setData(pieData);
         pieChart.invalidate();
     }
     private void buildBarChart(){
         barChart = (BarChart) getView().findViewById(R.id.barchart);
-        barChart.setDrawValueAboveBar(true);
+        barChart.setDrawValueAboveBar(false);
         barChart.getLegend().setEnabled(false);
         barChart.getDescription().setEnabled(false);
 
         BarDataSet barDataSet = new BarDataSet(barDataValues,"");
         barDataSet.setColors(colorsArray);
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        barDataSet.setDrawValues(false);
 
         BarData barData = new BarData(barDataSet);
         barChart.setData(barData);
 
+        YAxis rightYAxis = barChart.getAxisRight();
+        rightYAxis.setEnabled(false);
+        YAxis leftYAxis = barChart.getAxisLeft();
+        leftYAxis.setEnabled(false);
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(barDataLabels));
         xAxis.setPosition(XAxis.XAxisPosition.TOP);
@@ -176,16 +184,19 @@ public class StatsFragment extends Fragment {
             }
             if(actTimeSum == 0)
                 continue;
-            pieDataValues.add(new PieEntry(actTimeSum,actTp.getName() + "\n" + TimeFormat.HourAndMinute(actTimeSum))); //suma w godzinach, niestety value wymaga int
+            pieDataValues.add(new PieEntry(actTimeSum,actTp.getName() + "\n" + TimeFormat.HMSDuration(actTimeSum))); //suma w godzinach, niestety value wymaga int
 
-            barDataValues.add(new BarEntry(iteratorForBarEntriesPositions, actTimeSum));
+            barDataValues.add(new BarEntry(iteratorForBarEntriesPositions, actTimeSum)); //actTimeSum/numOfDays dałoby srednia danej aktywnosci w tych ostatnich dniach
             barDataLabels.add(actTp.getName());
             iteratorForBarEntriesPositions++;
         }
+        barDataValues.add(new BarEntry(iteratorForBarEntriesPositions, 0));
+        barDataLabels.add("");
+        colorsArrayList.add(Color.WHITE);
+
         colorsArray = new int[colorsArrayList.size()];
         for(int i=0; i<colorsArrayList.size(); i++)
             colorsArray[i] = (int)colorsArrayList.get(i);
-
     }
 
 }
