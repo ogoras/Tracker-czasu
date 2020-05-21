@@ -184,7 +184,7 @@ public class StatsFragment extends Fragment {
             }
             if(actTimeSum == 0)
                 continue;
-            pieDataValues.add(new PieEntry(actTimeSum,actTp.getName() + "\n" + TimeFormat.HourAndMinute(actTimeSum))); //suma w godzinach, niestety value wymaga int
+            pieDataValues.add(new PieEntry(actTimeSum,actTp.getName() + "\n" + TimeFormat.HMSDuration(actTimeSum))); //suma w godzinach, niestety value wymaga int
 
             barDataValues.add(new BarEntry(iteratorForBarEntriesPositions, actTimeSum)); //actTimeSum/numOfDays dałoby srednia danej aktywnosci w tych ostatnich dniach
             barDataLabels.add(actTp.getName());
