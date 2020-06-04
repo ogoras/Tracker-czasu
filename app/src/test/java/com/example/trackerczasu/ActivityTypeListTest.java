@@ -12,6 +12,7 @@ public class ActivityTypeListTest {
             ActivityTypeList list = new ActivityTypeList();
             ActivityType t = new ActivityType("TestType", parseColor("#6f347c"), R.drawable.music);
             assertNotNull(t);
+            list.addType(t);
             assertEquals(t.name, list.get(0).name);
             assertEquals(t.icon, list.get(0).icon);
     }
@@ -20,7 +21,7 @@ public class ActivityTypeListTest {
     public void deleteType() {
         ActivityTypeList list = new ActivityTypeList();
         list.ActivityTypes.add(new ActivityType("test", R.drawable.music));
-        list.deleteType(list.get(1));
+        list.deleteType(list.get(0));
         assertNotNull(list);
         assertEquals(0,list.size);
     }
