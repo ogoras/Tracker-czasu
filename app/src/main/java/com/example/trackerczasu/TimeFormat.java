@@ -37,7 +37,6 @@ public class TimeFormat {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time*1000);
         return  String.format("%02d %s", calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.getDisplayName(Calendar.MONTH,
-                        Calendar.SHORT_FORMAT, Locale.getDefault()));
+                calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT_FORMAT, Locale.getDefault() ));
     }
 }
